@@ -20,4 +20,5 @@
   :after (company latex))
 (use-package company-php
   :after (company php))
+
 (provide 'init-company)

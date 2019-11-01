@@ -12,7 +12,7 @@
   (ivy-use-virtual-buffers t)
   (ivy-magic-tilde nil)
   (ivy-virtual-abbreviate 'fullpath)
-    (ivy-count-format "")
+  (ivy-count-format "")
   :config
   (ivy-mode 1)
   (ivy-set-occur 'ivy-switch-buffer 'ivy-switch-buffer-occur))

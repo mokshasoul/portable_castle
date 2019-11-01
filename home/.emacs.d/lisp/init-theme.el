@@ -1,5 +1,6 @@
 ;; (use-package intellij-theme  :ensure t)
-(use-package leuven-theme :ensure t)
+;; (use-package leuven-theme :ensure t)
+(use-package monokai-theme :ensure t)
 (add-to-list 'default-frame-alist '(font . "Hack-12"))
-(load-theme 'leuven t)
+(load-theme 'monokai t)
 (provide 'init-theme)
