@@ -167,9 +167,11 @@ export SHORT_HOSTNAME=$(hostname -s)
 export EDITOR="vim"
 
 # LOCALE
-if grep -q en_CY "/etc/locale.conf"; then
-    export XCOMPOSEFILE=/usr/share/X11/locale/en_CY.UTF-8/Compose
-    export LC_CTYPE="en_CY.UTF-8"
+if [ -f "/etc/locale.conf" ]; then
+    if [ grep -q en_CY "/etc/locale.conf" ]; then
+        export XCOMPOSEFILE=/usr/share/X11/locale/en_CY.UTF-8/Compose
+        export LC_CTYPE="en_CY.UTF-8"
+    fi
 else
     export LC_CTYPE="en_US.UTF-8"
 fi
