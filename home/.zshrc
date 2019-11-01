@@ -63,11 +63,12 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+    export EDITOR='vim'
+else
+    export EDITOR="emacsclient -t"                  # $EDITOR opens in terminal
+    export VISUAL="emacsclient -c -a emacs"         # $VISUAL opens in GUI mode
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -88,8 +89,10 @@ if command -V dircolors >/dev/null 2>&1; then
     # Only alias ls if dircolors is installed
     if [ -f /opt/coreutils/bin/ls ]; then
         alias ls="/opt/coreutils/bin/ls --color=auto";
+
     else
         alias ls="ls -F --color=auto"
+
     fi
     alias dir="dir --color=auto"
     alias vdir="vidr --color=auto"
@@ -112,7 +115,33 @@ alias l="ls -CF"
 alias ll="ls -lh"
 alias la="ls -A"
 alias sl="ls"
-
+if [ -f /etc/os-release ] ; then
+    . /etc/os-release
+    OS=$NAME
+fi
+alias killemacs="emacsclient -e '(save-buffers-kill-emacs)'"
+alias xclip="xclip -selection clip-board"
+alias delpyc="find . -name \"*.pyc\" -delete"
+case $OS in
+    Arch)
+        alias paci="yaourt -S"
+        alias pacs="yaourt -Ssa"
+        alias pacr="yaourt -R"
+        alias pacsq="yaourt -Ssaq"
+        alias pacu="yaourt -Syyua"
+        alias ls='ls --color=auto'
+        ;;
+    Fedora)
+        alias dnfi="sudo dnf install"
+        alias dnfu="sudo dnf update"
+        ;;
+    "openSUSE Tumbleweed")
+        alias zdup="sudo zypper dup --allow-vendor-change"
+        alias zin="sudo zypper install"
+        alias zref="sudo zypper refresh"
+        export SSH_ASKPASS="/usr/lib/ssh/ksshaskpass"
+        ;;
+esac
 # Make unified diff syntax the default
 alias diff="diff -u"
 
