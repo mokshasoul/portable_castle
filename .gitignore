@@ -1,2 +1,12 @@
-/home/.emacs.d/.emacs.desktop
+/home/.emacs.d/.emacs.desktop*
 /.#.gitignore
+home/.emacs.d/history
+home/.emacs.d/.session
+home/.emacs.d/network-security.data
+home/.emacs.d/places
+home/.emacs.d/projectile-bookmarks.eld
+home/.emacs.d/projectile.cache
+home/.emacs.d/recentf
+home/.emacs.d/auto-save-list/.saves-18062-barret~
+home/.emacs.d/elpa*
+home/.emacs.d/transient*
