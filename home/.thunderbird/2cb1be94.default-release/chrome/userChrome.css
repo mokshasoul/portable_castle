@@ -25,3 +25,9 @@
   background-color: #ff0000 !important;
   color: black;
 }
+
+.calendar-color-box[categories~="fun"],
+.calendar-event-box-container[categories~="fun"] {
+  background-color: #ff0000 !important;
+  color: black;
+}
