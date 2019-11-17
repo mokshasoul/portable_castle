@@ -1,0 +1,27 @@
+/*
+ * Do not remove the @namespace line -- it's required for correct functioning
+ */
+@namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
+
+.calendar-color-box[categories~="work"],
+.calendar-event-box-container[categories~="work"] {
+  background-color: #00008b !important;
+  color: white;
+}
+.calendar-color-box[categories~="random"],
+.calendar-event-box-container[categories~="random"] {
+  background-color: #999999 !important;
+  color: black;
+}
+
+.calendar-color-box[categories~="gretta"],
+.calendar-event-box-container[categories~="gretta"] {
+  background-color: #ff9900 !important;
+  color: black;
+}
+
+.calendar-color-box[categories~="daily_habints"],
+.calendar-event-box-container[categories~="daily_habints"] {
+  background-color: #ff0000 !important;
+  color: black;
+}
