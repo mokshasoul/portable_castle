@@ -11,6 +11,5 @@
 (use-package counsel-projectile
   :after (counsel projectile)
   :hook (after-init . counsel-projectile-mode))
-  ;;; :hook (projectile-mode . counsel-projectile-mode))
 (provide 'init-projectile)
 ;;; init-projectile.el ends here
