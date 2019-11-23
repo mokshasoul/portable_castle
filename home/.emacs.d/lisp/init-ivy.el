@@ -22,7 +22,8 @@
   :bind (
          ("C-*" . counsel-org-agenda-headlines)
          ("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file))
+         ("C-x C-f" . counsel-find-file)
+         ("C-c l" . counsel-locate))
   :commands counsel-minibuffer-history
   :custom
   (global-set-key (kbd "<f1> f") 'counsel-describe-function)
@@ -33,7 +34,6 @@
   (global-set-key (kbd "C-c g") 'counsel-git)
   (global-set-key (kbd "C-c j") 'counsel-git-grep)
   (global-set-key (kbd "C-c k") 'counsel-ag)
-  (global-set-key (kbd "C-x l") 'counsel-locate)
   (define-key read-expression-map (kbd "C-r") 'counsel-expression-history))
 
 ;; (use-package counsel-tramp
