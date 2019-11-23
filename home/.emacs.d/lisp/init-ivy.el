@@ -22,7 +22,6 @@
   :bind (
          ("C-*" . counsel-org-agenda-headlines)
          ("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file)
          ("C-x C-f" . counsel-find-file))
   :commands counsel-minibuffer-history
   :custom
