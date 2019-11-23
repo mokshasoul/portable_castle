@@ -1,5 +1,5 @@
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/snap/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
   export ZSH="/home/$USER/.oh-my-zsh"
@@ -139,6 +139,13 @@ case $OS in
         alias zdup="sudo zypper dup --allow-vendor-change"
         alias zin="sudo zypper install"
         alias zref="sudo zypper refresh"
+        alias zse="noglob sudo zypper se" # Search 
+        alias zsei="noglob sudo zypper se -s i" # Search installed packages
+        alias zin="noglob sudo zypper in" # Install
+        alias zup="sudo zypper up" # Normal uprade
+        alias zdup="sudo zypper dup --no-allow-vendor-change" # Dist-Upgrade
+        alias zrmv="noglob sudo zypper rm" # Remove
+        alias zps="sudo zypper ps -s"
         export SSH_ASKPASS="/usr/lib/ssh/ksshaskpass"
         ;;
 esac
@@ -192,13 +199,7 @@ alias svn_precommit="svn status | grep \"^!\" | awk \"\{print \$2\}\" |xargs svn
 #####
 # openSuse Specifics - Zypper <>
 #####
-alias zse="noglob sudo zypper se" # Search 
-alias zsei="noglob sudo zypper se -s i" # Search installed packages
-alias zin="noglob sudo zypper in" # Install
-alias zup="sudo zypper up" # Normal uprade
-alias zdup="sudo zypper dup --no-allow-vendor-change" # Dist-Upgrade
-alias zrmv="noglob sudo zypper rm" # Remove
-alias zps="sudo zypper ps -s"
+
 autoload -Uz age
 
 
