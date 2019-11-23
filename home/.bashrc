@@ -191,6 +191,8 @@ case $OS in
         alias pacsq="yaourt -Ssaq"
         alias pacu="yaourt -Syyua"
         alias ls='ls --color=auto'
+        # AUTOCOMPLETE FOR ALIASES
+        complete -F pacaur paci
         ;;
     Fedora)
         alias dnfi="sudo dnf install"
@@ -204,8 +206,6 @@ case $OS in
         ;;
 esac
 
-# AUTOCOMPLETE FOR ALIASES
-# complete -F pacaur paci
 
 # Makes emacs command hook on server
 function emacs {
@@ -224,6 +224,3 @@ function emacs {
     done
     setsid emacsclient -n -a /usr/bin/emacs ${args[*]}
 }
-
-# Prompt
-# PS1='[\u@\h \W]\$ '
