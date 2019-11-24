@@ -12,3 +12,17 @@ home/.emacs.d/elpa*
 home/.emacs.d/transient*
 home/.emacs.d/auto-save-list/*
 /home/.config/i3/__pycache__/
+home/.zsh/cache
+home/.zsh/zsh-completions
+home/.emacs.d/elpa
+home/.emacs.d/init-mail.el
+\.*~$
+home/.emacs.d/notes
+i3/__pycache__
+tmux/plugins/tmux-resurrect
+\#*
+**GPATH
+**GRTAGS
+**GTAGS
+**ID
+/home/.emacs.d/eshell/
