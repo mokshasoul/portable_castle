@@ -6,5 +6,8 @@
 ;; Systemd mode
 (use-package systemd
   :ensure t)
+;; SSH-Config
+(use-package ssh-config-mode
+  :ensure t)
 
 (provide 'init-sys-utils)
