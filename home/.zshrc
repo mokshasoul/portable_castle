@@ -46,7 +46,7 @@ ZSH_THEME="robbyrussell"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
-
+ 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
@@ -109,7 +109,7 @@ alias less="less -R"
 
 # aliases for refreshing shell environment
 alias sourcez="source ~/.zshrc"
-alias refreshEnv="source ~/.zshrc"
+alias refreshenv="source ~/.zshrc"
 
 alias l="ls -CF"
 alias ll="ls -lh"
@@ -191,7 +191,6 @@ alias zshconfige="vim ~/.zsh/exports.zsh"
 alias zshconfighooks="vim ~/.zsh/zsh_hooks.zsh"
 alias i3config="vim ~/.config/i3/config"
 alias i3status="vim ~/.config/i3/pystatus.py"
-alias masterdir="cd ~/Dropbox/University\ Stuff/TUM/Master_Thesis"
 alias svn_precommit="svn status | grep \"^!\" | awk \"\{print \$2\}\" |xargs svn delete"
 
 # alias msfconsole="msfconsole --quiet -x \"db_connect ${USER}@msf\""
@@ -217,3 +216,4 @@ alias -s .tex ='vim'
 alias -s .html='firefox'
 alias -s .pdf='zathura'
 
+[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ '
