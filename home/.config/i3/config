@@ -306,7 +306,16 @@ for_window [title="Preferences$"] floating enable
 for_window [class="^spacefm$"] floating enable
 for_window [class="^Thunar$"] floating enable
 for_window [class="^.*"] border pixel 0
-
+# KDE-Integration
+for_window [class="plasmashell"] floating enable
+for_window [class="Plasma"] floating enable, border none
+for_window [title="plasma-desktop"] floating enable, border none
+for_window [title="win7"] floating enable, border none
+for_window [class="krunner"] floating enable, border none
+for_window [class="Kmix"] floating enable, border none
+for_window [class="Klipper"] floating enable, border none
+for_window [class="Plasmoidviewer"] floating enable, border none
+for_window [class="yakuake"] floating enable, border none
 
 #set screens before startup so tray is fixed
 # exec --no-startup-id ~/bin/setScreen.sh
@@ -344,12 +353,9 @@ for_window [title="Desktop — Plasma"] kill; floating enable; border none
 #exec --no-startup-id  syndaemon -i 1 -t -K -R 
 # exec --no-startup-id xfce4-volumed
 # exec --no-startup-id xfce4-panel --disable-wm-check
-for_window [class="plasmashell"] floating enable
-for_window [class="Plasma"] floating enable, border none
-for_window [title="plasma-desktop"] floating enable, border none
-for_window [title="win7"] floating enable, border none
-for_window [class="krunner"] floating enable, border none
-for_window [class="Kmix"] floating enable, border none
-for_window [class="Klipper"] floating enable, border none
-for_window [class="Plasmoidviewer"] floating enable, border none
-for_window [class="yakuake"] floating enable, border none
+
+# GNOME-INTEGRATION
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
+exec_always --no-startup-id gnome-power-manager
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id gnome-flashback
