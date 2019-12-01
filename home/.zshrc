@@ -1,8 +1,8 @@
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/snap/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/.gem/ruby/2.6.0/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/$USER/.oh-my-zsh"
+export ZSH="/home/$USER/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -51,13 +51,13 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(copyfile command-not-found extract git ubuntu gpg-agent colorize)
+plugins=(copyfile command-not-found extract git ubuntu gpg-agent colorize archlinux sudo encode64 emacs)
 
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-# export MANPATH="/usr/local/man:$MANPATH"
+export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -74,16 +74,13 @@ fi
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
+export SSH_KEY_PATH="~/.ssh/private"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 if command -V dircolors >/dev/null 2>&1; then
     eval "$(dircolors -b)"
     # Only alias ls if dircolors is installed
@@ -124,11 +121,6 @@ alias xclip="xclip -selection clip-board"
 alias delpyc="find . -name \"*.pyc\" -delete"
 case $OS in
     Arch)
-        alias paci="yaourt -S"
-        alias pacs="yaourt -Ssa"
-        alias pacr="yaourt -R"
-        alias pacsq="yaourt -Ssaq"
-        alias pacu="yaourt -Syyua"
         alias ls='ls --color=auto'
         ;;
     Fedora)
@@ -139,7 +131,7 @@ case $OS in
         alias zdup="sudo zypper dup --allow-vendor-change"
         alias zin="sudo zypper install"
         alias zref="sudo zypper refresh"
-        alias zse="noglob sudo zypper se" # Search 
+        alias zse="noglob sudo zypper se" # Search
         alias zsei="noglob sudo zypper se -s i" # Search installed packages
         alias zin="noglob sudo zypper in" # Install
         alias zup="sudo zypper up" # Normal uprade
@@ -178,42 +170,28 @@ alias du="du -h"
 # Isomount
 alias mountiso="udisksctl loop-setup -r -f"
 # Open-Configs
-alias zshconfig="emacs ~/.zshrc"
-alias zshconfigp="vim ~/.zsh/prompt.zsh"
-alias zshconfiga="vim ~/.zsh/aliases.zsh"
-alias zshconfigb="vim ~/.zsh/bindkeys.zsh"
-alias zshconfigc="vim ~/.zsh/completion.zsh"
-alias zshconfigcol="vim ~/.zsh/colors.zsh"
-alias zshconfigf="vim ~/.zsh/functions.zsh"
-alias zshconfigh="vim ~/.zsh/history.zsh"
-alias zshconfigs="vim ~/.zsh/setopt.zsh"
-alias zshconfige="vim ~/.zsh/exports.zsh"
-alias zshconfighooks="vim ~/.zsh/zsh_hooks.zsh"
-alias i3config="vim ~/.config/i3/config"
-alias i3status="vim ~/.config/i3/pystatus.py"
+alias zshconfig="$EDITOR   ~/.zshrc"
+alias zshconfigp="$EDITOR ~/.zsh/prompt.zsh"
+alias zshconfiga="$EDITOR ~/.zsh/aliases.zsh"
+alias zshconfigb="$EDITOR ~/.zsh/bindkeys.zsh"
+alias zshconfigc="$EDITOR ~/.zsh/completion.zsh"
+alias zshconfigcol="$EDITOR ~/.zsh/colors.zsh"
+alias zshconfigf="$EDITOR ~/.zsh/functions.zsh"
+alias zshconfigh="$EDITOR ~/.zsh/history.zsh"
+alias zshconfigs="$EDITOR ~/.zsh/setopt.zsh"
+alias zshconfige="$EDITOR ~/.zsh/exports.zsh"
+alias zshconfighooks="$EDITOR ~/.zsh/zsh_hooks.zsh"
+alias i3config="$EDITOR ~/.config/i3/config"
+alias i3status="$EDITOR ~/.config/i3/pystatus.py"
 alias svn_precommit="svn status | grep \"^!\" | awk \"\{print \$2\}\" |xargs svn delete"
-
-# alias msfconsole="msfconsole --quiet -x \"db_connect ${USER}@msf\""
-
-#####
-# openSuse Specifics - Zypper <>
-#####
-
 autoload -Uz age
-
-
-####
-#
-####
-alias watch_bbc="launch mpv 'http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/bbc_world/ls_satlink/b_828.m3u8?token=20160125x2h5fruwen3Pateth'"
-
 # Directory shorts
-# alias -g ... = '../..'
-# alias -g .... = '../../..'
-# alias -g ..... = '../../../..'
+alias -g ... = '../..'
+alias -g .... = '../../..'
+alias -g ..... = '../../../..'
 # .extensions opens with program
-alias -s .tex ='vim'
+alias -s .tex ='emacs'
 alias -s .html='firefox'
 alias -s .pdf='zathura'
-
+# FIX TRAMP ERRORS
 [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ '
