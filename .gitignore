@@ -26,3 +26,4 @@ tmux/plugins/tmux-resurrect
 **GTAGS
 **ID
 /home/.emacs.d/eshell/
+/home/.emacs.d/tramp
