@@ -185,11 +185,6 @@ alias xclip="xclip -selection clip-board"
 alias delpyc="find . -name \"*.pyc\" -delete"
 case $OS in
     Arch)
-        alias paci="yaourt -S"
-        alias pacs="yaourt -Ssa"
-        alias pacr="yaourt -R"
-        alias pacsq="yaourt -Ssaq"
-        alias pacu="yaourt -Syyua"
         alias ls='ls --color=auto'
         # AUTOCOMPLETE FOR ALIASES
         complete -F pacaur paci
