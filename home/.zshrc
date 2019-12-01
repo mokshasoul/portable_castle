@@ -140,6 +140,15 @@ case $OS in
         alias zps="sudo zypper ps -s"
         export SSH_ASKPASS="/usr/lib/ssh/ksshaskpass"
         ;;
+    "Gentoo")
+        # emerge Alias Gentoo
+        alias eav="noglob sudo emerge -av"
+        alias euf="sudo emerge -avDU @world"
+        alias eufn="sudo emerge -aDN @world"
+        alias eufvn="sudo emerge avDN @world"
+        alias ufed="sudo ufed"
+        alias checkconf="sudo find /etc -name '._cfg????_*'"
+        ;;
 esac
 # Make unified diff syntax the default
 alias diff="diff -u"
@@ -160,13 +169,6 @@ alias du="du -h"
 #Prevents wine from adding menu entries and desktop files
 #export WINEDLLOVERRIDES='winemenubuilder.exe=d'
 # GENTOO SETUP
-#Emerge Alias Gentoo
-# alias eav="noglob sudo emerge -av"
-# alias euf="sudo emerge -avDU @world"
-# alias eufn="sudo emerge -aDN @world"
-# alias eufvn="sudo emerge avDN @world"
-# alias ufed="sudo ufed"
-# alias checkconf="sudo find /etc -name '._cfg????_*'"
 # Isomount
 alias mountiso="udisksctl loop-setup -r -f"
 # Open-Configs
@@ -184,14 +186,5 @@ alias zshconfighooks="$EDITOR ~/.zsh/zsh_hooks.zsh"
 alias i3config="$EDITOR ~/.config/i3/config"
 alias i3status="$EDITOR ~/.config/i3/pystatus.py"
 alias svn_precommit="svn status | grep \"^!\" | awk \"\{print \$2\}\" |xargs svn delete"
-autoload -Uz age
-# Directory shorts
-alias -g ... = '../..'
-alias -g .... = '../../..'
-alias -g ..... = '../../../..'
-# .extensions opens with program
-alias -s .tex ='emacs'
-alias -s .html='firefox'
-alias -s .pdf='zathura'
 # FIX TRAMP ERRORS
 [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ '
