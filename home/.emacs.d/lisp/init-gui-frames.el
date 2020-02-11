@@ -6,7 +6,7 @@
 ;; Created: 01 Feb 2020
 ;; Version: 1.0
 ;; Keywords:gui
-;; X-URL: https://github.com/mokshasoul/init-gui-frames
+;; X-URL: https://github.com/mokshasoul/dotfiles
 
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
