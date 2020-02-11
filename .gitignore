@@ -27,3 +27,4 @@ tmux/plugins/tmux-resurrect
 **ID
 /home/.emacs.d/eshell/
 /home/.emacs.d/tramp
+/home/.emacs.d/url/
