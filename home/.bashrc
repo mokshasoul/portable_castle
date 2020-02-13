@@ -210,3 +210,5 @@ function emacs {
     done
     setsid emacsclient -n -a /usr/bin/emacs ${args[*]}
 }
+
+source /home/moksha/.config/broot/launcher/bash/br
