@@ -3,9 +3,11 @@
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 ;; Steve purcell org settings
 ;; Various preferences
+(setq org-refile-targets '((nil :maxlevel . 9)
+                                (org-agenda-files :maxlevel . 9)))
+(setq org-outline-path-complete-in-steps nil)         ; Refile in a single go
+(setq org-refile-use-outline-path t)                  ; Show full paths for refiling                           (org-agenda-files :maxlevel . 9)))
 (setq org-log-done t
-      org-refile-targets '((nil :maxlevel . 4)
-                           (org-agenda-files :maxlevel . 4))
       org-refile-use-outline-path t
       org-edit-timestamp-down-means-later t
       org-archive-mark-done nil
@@ -16,9 +18,9 @@
       org-html-validation-link nil
       org-export-kill-product-buffer-when-displayed t
       org-tags-column 5
-      org-directory '("~/Documents/_org/")
-      org-agenda-files '("~/Documents/_org/")
-      org-default-notes-file "~/Documents/_org/notes.org")
+      org-directory '("~/Nextcloud/_org/")
+      org-agenda-files '("~/Nextcloud/_org/")
+      org-default-notes-file "~/Nextcloud/_org/notes.org")
 ;; inserts full filename at top of file to link different org files
 ;; (use-package org-fstree
 ;;   :ensure t)
