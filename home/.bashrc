@@ -4,7 +4,7 @@
 #
 
 # If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+# [[ $- != *i* ]] && return
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
@@ -59,9 +59,9 @@ if [ -x /usr/bin/dircolors ]; then
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+    alias grep='grep --color=auto '
+    alias fgrep='fgrep --color=auto '
+    alias egrep='egrep --color=auto '
 fi
 
 # colored GCC warnings and errors
@@ -167,11 +167,9 @@ export SHORT_HOSTNAME=$(hostname -s)
 export EDITOR="vim"
 
 # LOCALE
-if [ -f "/etc/locale.conf" ]; then
-    if [ grep -q en_CY "/etc/locale.conf" ]; then
-        export XCOMPOSEFILE=/usr/share/X11/locale/en_CY.UTF-8/Compose
-        export LC_CTYPE="en_CY.UTF-8"
-    fi
+if [ -f "/etc/locale.conf" ] && grep -q en_CY /etc/locale.conf; then
+    export XCOMPOSEFILE=/usr/share/X11/locale/en_CY.UTF-8/Compose
+    export LC_CTYPE="en_CY.UTF-8"
 else
     export LC_CTYPE="en_US.UTF-8"
 fi
@@ -192,7 +190,7 @@ case $OS in
         alias pacu="yaourt -Syyua"
         alias ls='ls --color=auto'
         # AUTOCOMPLETE FOR ALIASES
-        complete -F pacaur paci
+        # complete -F pacaur paci
         ;;
     Fedora)
         alias dnfi="sudo dnf install"
