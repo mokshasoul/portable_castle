@@ -136,6 +136,9 @@
   (org-super-agenda-mode))
 ;; Calendar packages for org
 (use-package calfw)
+(require 'org-crypt)
+(org-crypt-use-before-save-magic)
+(setq org-tags-exclude-from-inheritance (quote ("crypt")))
 (use-package calfw-org
   :after calfw)
 
