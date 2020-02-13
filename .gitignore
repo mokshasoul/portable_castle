@@ -29,3 +29,5 @@ tmux/plugins/tmux-resurrect
 /home/.emacs.d/.python-environments/
 /home/.emacs.d/elpy/
 /home/.emacs.d/session.10e0c2e1c9efea1836157851343030574000000010260075
+/home/.emacs.d/tramp
+/home/.emacs.d/url/

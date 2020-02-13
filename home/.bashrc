@@ -1,8 +1,4 @@
 # !/bin/bash  -*- mode: sh; -*-
-#
-# ~/.bashrc
-#
-
 # If not running interactively, don't do anything
 # [[ $- != *i* ]] && return
 if [ -f /etc/bashrc ]; then
@@ -63,9 +59,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto '
     alias egrep='egrep --color=auto '
 fi
-
-# colored GCC warnings and errors
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
 alias ll='ls -alF'
@@ -183,11 +176,6 @@ alias xclip="xclip -selection clip-board"
 alias delpyc="find . -name \"*.pyc\" -delete"
 case $OS in
     Arch)
-        alias paci="yaourt -S"
-        alias pacs="yaourt -Ssa"
-        alias pacr="yaourt -R"
-        alias pacsq="yaourt -Ssaq"
-        alias pacu="yaourt -Syyua"
         alias ls='ls --color=auto'
         # AUTOCOMPLETE FOR ALIASES
         # complete -F pacaur paci

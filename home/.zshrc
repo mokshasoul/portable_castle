@@ -1,9 +1,12 @@
+<<<<<<< HEAD
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/home/moksha/.gem/ruby/2.7.0/bin/:/snap/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/$USER/.oh-my-zsh"
 
+=======
+>>>>>>> 2a562ab5d393550f47438213247f3dd6b1930c31
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -40,10 +43,10 @@ ZSH_THEME="robbyrussell"
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy-mm-dd"
 
+<<<<<<< HEAD
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
  
@@ -76,14 +79,17 @@ fi
 # ssh
 export SSH_KEY_PATH="~/.ssh/private"
 
+=======
+plugins=(copyfile command-not-found extract git ubuntu colorize archlinux sudo encode64 emacs)
+
+source $ZSH/oh-my-zsh.sh
+
+>>>>>>> 2a562ab5d393550f47438213247f3dd6b1930c31
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 if command -V dircolors >/dev/null 2>&1; then
     eval "$(dircolors -b)"
     # Only alias ls if dircolors is installed
@@ -124,11 +130,6 @@ alias xclip="xclip -selection clip-board"
 alias delpyc="find . -name \"*.pyc\" -delete"
 case $OS in
     Arch)
-        alias paci="yaourt -S"
-        alias pacs="yaourt -Ssa"
-        alias pacr="yaourt -R"
-        alias pacsq="yaourt -Ssaq"
-        alias pacu="yaourt -Syyua"
         alias ls='ls --color=auto'
         ;;
     Fedora)
@@ -139,7 +140,7 @@ case $OS in
         alias zdup="sudo zypper dup --allow-vendor-change"
         alias zin="sudo zypper install"
         alias zref="sudo zypper refresh"
-        alias zse="noglob sudo zypper se" # Search 
+        alias zse="noglob sudo zypper se" # Search
         alias zsei="noglob sudo zypper se -s i" # Search installed packages
         alias zin="noglob sudo zypper in" # Install
         alias zup="sudo zypper up" # Normal uprade
@@ -147,6 +148,15 @@ case $OS in
         alias zrmv="noglob sudo zypper rm" # Remove
         alias zps="sudo zypper ps -s"
         export SSH_ASKPASS="/usr/lib/ssh/ksshaskpass"
+        ;;
+    "Gentoo")
+        # emerge Alias Gentoo
+        alias eav="noglob sudo emerge -av"
+        alias euf="sudo emerge -avDU @world"
+        alias eufn="sudo emerge -aDN @world"
+        alias eufvn="sudo emerge avDN @world"
+        alias ufed="sudo ufed"
+        alias checkconf="sudo find /etc -name '._cfg????_*'"
         ;;
 esac
 # Make unified diff syntax the default
@@ -168,52 +178,22 @@ alias du="du -h"
 #Prevents wine from adding menu entries and desktop files
 #export WINEDLLOVERRIDES='winemenubuilder.exe=d'
 # GENTOO SETUP
-#Emerge Alias Gentoo
-# alias eav="noglob sudo emerge -av"
-# alias euf="sudo emerge -avDU @world"
-# alias eufn="sudo emerge -aDN @world"
-# alias eufvn="sudo emerge avDN @world"
-# alias ufed="sudo ufed"
-# alias checkconf="sudo find /etc -name '._cfg????_*'"
 # Isomount
 alias mountiso="udisksctl loop-setup -r -f"
 # Open-Configs
-alias zshconfig="emacs ~/.zshrc"
-alias zshconfigp="vim ~/.zsh/prompt.zsh"
-alias zshconfiga="vim ~/.zsh/aliases.zsh"
-alias zshconfigb="vim ~/.zsh/bindkeys.zsh"
-alias zshconfigc="vim ~/.zsh/completion.zsh"
-alias zshconfigcol="vim ~/.zsh/colors.zsh"
-alias zshconfigf="vim ~/.zsh/functions.zsh"
-alias zshconfigh="vim ~/.zsh/history.zsh"
-alias zshconfigs="vim ~/.zsh/setopt.zsh"
-alias zshconfige="vim ~/.zsh/exports.zsh"
-alias zshconfighooks="vim ~/.zsh/zsh_hooks.zsh"
-alias i3config="vim ~/.config/i3/config"
-alias i3status="vim ~/.config/i3/pystatus.py"
+alias zshconfig="$EDITOR   ~/.zshrc"
+alias zshconfigp="$EDITOR ~/.zsh/prompt.zsh"
+alias zshconfiga="$EDITOR ~/.zsh/aliases.zsh"
+alias zshconfigb="$EDITOR ~/.zsh/bindkeys.zsh"
+alias zshconfigc="$EDITOR ~/.zsh/completion.zsh"
+alias zshconfigcol="$EDITOR ~/.zsh/colors.zsh"
+alias zshconfigf="$EDITOR ~/.zsh/functions.zsh"
+alias zshconfigh="$EDITOR ~/.zsh/history.zsh"
+alias zshconfigs="$EDITOR ~/.zsh/setopt.zsh"
+alias zshconfige="$EDITOR ~/.zsh/exports.zsh"
+alias zshconfighooks="$EDITOR ~/.zsh/zsh_hooks.zsh"
+alias i3config="$EDITOR ~/.config/i3/config"
+alias i3status="$EDITOR ~/.config/i3/pystatus.py"
 alias svn_precommit="svn status | grep \"^!\" | awk \"\{print \$2\}\" |xargs svn delete"
-
-# alias msfconsole="msfconsole --quiet -x \"db_connect ${USER}@msf\""
-
-#####
-# openSuse Specifics - Zypper <>
-#####
-
-autoload -Uz age
-
-
-####
-#
-####
-alias watch_bbc="launch mpv 'http://wpc.c1a9.edgecastcdn.net/hls-live/20C1A9/bbc_world/ls_satlink/b_828.m3u8?token=20160125x2h5fruwen3Pateth'"
-
-# Directory shorts
-# alias -g ... = '../..'
-# alias -g .... = '../../..'
-# alias -g ..... = '../../../..'
-# .extensions opens with program
-alias -s .tex ='vim'
-alias -s .html='firefox'
-alias -s .pdf='zathura'
-
+# FIX TRAMP ERRORS
 [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ '
