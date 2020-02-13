@@ -35,7 +35,7 @@ floating_maximum_size 800x600
 force_focus_wrapping yes
 
 # start a terminal
-bindsym $mod+Return exec /usr/bin/urxvtc-256color
+bindsym $mod+Return exec /usr/bin/alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -221,7 +221,7 @@ popup_during_fullscreen smart
 new_window pixel
 new_float pixel
 # hide_edge_borders smart
-# Stop following mouse (cz of trackpad) 
+# Stop following mouse (cz of trackpad)
 focus_follows_mouse no
 
 # Focus on window when it spawns
@@ -236,8 +236,8 @@ workspace_layout tabbed
 # Workspace togglin
 workspace_auto_back_and_forth no
 
-# Workspace output location 
-workspace $ws6 output HDMI3 
+# Workspace output location
+workspace $ws6 output HDMI3
 
 #### Container Assignments ####
 # Windows to workspace assignment
@@ -281,7 +281,7 @@ for_window [title="TeamViewer"] floating disable
 for_window [class="^Skype$"] floating enable
 for_window [class="^Skype$" title=" - Skype$"] floating disable
 for_window [class="^Firefox$"] floating enable
-for_window [class="^Firefox$" instance="^Places$"] floating disable 
+for_window [class="^Firefox$" instance="^Places$"] floating disable
 for_window [class="^Firefox$" instance="^Navigator$"] floating disable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="gimp"] floating enable
@@ -324,12 +324,12 @@ exec --no-startup-id wmctrl -c Plasma
 for_window [title="Desktop — Plasma"] kill; floating enable; border none
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
- bar{
-          font pango: Ubuntu 7
-          status_command i3pystatus -c ~/.config/i3/pystatus.py
-          tray_output primary
-          strip_workspace_numbers yes
-  }
+ # bar{
+ #          font pango: Ubuntu 7
+ #          status_command i3pystatus -c ~/.config/i3/pystatus.py
+ #          tray_output primary
+ #          strip_workspace_numbers yes
+ #  }
 
 #STARTUP PROGRAMS
 # exec --no-startup-id dbus-launch nm-applet  <-- GENTOO
@@ -345,17 +345,17 @@ for_window [title="Desktop — Plasma"] kill; floating enable; border none
 # exec --no-startup-id udiskie -2 -t
 # exec --no-startup-id redshift
 # exec --no-startup-id urxvtc-256color -name vim -e vim ~/Documents/todo.txt
-# exec --no-startup-id urxvtc-256color -name ranger -e ranger 
+# exec --no-startup-id urxvtc-256color -name ranger -e ranger
 # exec --no-startup-id mpd
 # exec --no-startup-id ~/bin/setLayoutWorksapce3.sh
 # exec --no-startup-id xfsettingsd
 # exec --no-startup-id xfce4-power-manager
-#exec --no-startup-id  syndaemon -i 1 -t -K -R 
+# exec --no-startup-id  syndaemon -i 1 -t -K -R
 # exec --no-startup-id xfce4-volumed
 # exec --no-startup-id xfce4-panel --disable-wm-check
 
 # GNOME-INTEGRATION
-exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
-exec_always --no-startup-id gnome-power-manager
-exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id gnome-flashback
+# exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
+# exec_always --no-startup-id gnome-power-manager
+# exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# exec --no-startup-id gnome-flashback
