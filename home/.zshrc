@@ -1,12 +1,8 @@
-<<<<<<< HEAD
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/home/moksha/.gem/ruby/2.7.0/bin/:/snap/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/$USER/.oh-my-zsh"
-
-=======
->>>>>>> 2a562ab5d393550f47438213247f3dd6b1930c31
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
@@ -46,7 +42,6 @@ ZSH_THEME="robbyrussell"
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="yyyy-mm-dd"
 
-<<<<<<< HEAD
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
  
@@ -79,12 +74,6 @@ fi
 # ssh
 export SSH_KEY_PATH="~/.ssh/private"
 
-=======
-plugins=(copyfile command-not-found extract git ubuntu colorize archlinux sudo encode64 emacs)
-
-source $ZSH/oh-my-zsh.sh
-
->>>>>>> 2a562ab5d393550f47438213247f3dd6b1930c31
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -197,3 +186,5 @@ alias i3status="$EDITOR ~/.config/i3/pystatus.py"
 alias svn_precommit="svn status | grep \"^!\" | awk \"\{print \$2\}\" |xargs svn delete"
 # FIX TRAMP ERRORS
 [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ '
+
+source /home/moksha/.config/broot/launcher/bash/br
