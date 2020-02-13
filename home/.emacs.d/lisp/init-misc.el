@@ -39,6 +39,9 @@
 						 "backups")))))
 ;;; Faster than default
 (setq tramp-default-method "ssh")
+;;; required for sudo piping on remote host
+(setq tramp-default-host-alist
+      `("dragon" "root" "/ssh:admin@dragon:"))
 ;;; Default is org
 (setq-default major-mode 'org-mode)
 ;;; Backup and autosave to temp
