@@ -45,13 +45,13 @@
 ;;; Set Org-Capture templates
 (setq org-capture-templates
       '(("t" "todo" entry
-         (file+headline "~/Documents/_org/tasks.org" "Tasks")
+         (file+headline "~/Nextcloud/_org/tasks.org" "Tasks")
          "** TODO %^{Brief description} %^g\n%?\nAdded: %U")
         ("n" "note" entry
-         (file+headline "~/Documents/_org/notes.org" "Notes")
+         (file+headline "~/Nextcloud/_org/notes.org" "Notes")
          "** :NOTE:\n%U\n%a\n" :clock-keep t)
         ("h" "habit" entry
-         (file+headline "~/Documents/_org/tasks.org" "Habits")
+         (file+headline "~/Nextcloud/_org/tasks.org" "Habits")
          "** TODO %^{Brief description}%^t")))
 
 
