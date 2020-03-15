@@ -43,10 +43,6 @@ emacs.d/notes
 i3/__pycache__
 tmux/plugins/tmux-resurrect
 \#*
-**GPATH
-**GRTAGS
-**GTAGS
-**ID
 /emacs.d/elpa-*
 home/.emacs.d/server/server
 /home/.emacs.d/.bookmarks.el
@@ -55,5 +51,4 @@ home/.emacs.d/server/server
 /home/.emacs.d/server/
 /home/.emacs.d/projectile.cache
 /home/.emacs.d/.mc-lists.el
-/home/.emacs.d/.#recentf
 /home/.emacs.d/.directory
