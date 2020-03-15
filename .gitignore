@@ -52,3 +52,4 @@ home/.emacs.d/server/server
 /home/.emacs.d/projectile.cache
 /home/.emacs.d/.mc-lists.el
 /home/.emacs.d/.directory
+/home/.tmux/plugins/tmux-resurrect/
