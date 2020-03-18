@@ -4,7 +4,7 @@
 ;; Steve purcell org settings
 ;; Various preferences
 (setq org-refile-targets '((nil :maxlevel . 9)
-                                (org-agenda-files :maxlevel . 9)))
+                           (org-directory :maxlevel . 9)))
 (setq org-outline-path-complete-in-steps nil)         ; Refile in a single go
 (setq org-refile-use-outline-path t)                  ; Show full paths for refiling                           (org-agenda-files :maxlevel . 9)))
 (setq org-log-done t
@@ -19,7 +19,7 @@
       org-export-kill-product-buffer-when-displayed t
       org-tags-column 5
       org-directory '("~/Nextcloud/_org/")
-      org-agenda-files '("~/Nextcloud/_org/")
+      org-agenda-files '("~/Nextcloud/_org/agenda/")
       org-default-notes-file "~/Nextcloud/_org/notes.org")
 ;; inserts full filename at top of file to link different org files
 ;; (use-package org-fstree
@@ -45,7 +45,7 @@
 ;;; Set Org-Capture templates
 (setq org-capture-templates
       '(("t" "todo" entry
-         (file+headline "~/Nextcloud/_org/tasks.org" "Tasks")
+         (file+headline "~/Nextcloud/_org/agenda/tasks.org" "Tasks")
          "** TODO %^{Brief description} %^g\n%?\nAdded: %U")
         ("n" "note" entry
          (file+headline "~/Nextcloud/_org/notes.org" "Notes")

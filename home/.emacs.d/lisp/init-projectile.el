@@ -44,7 +44,8 @@
   (after-init . projectile-mode)
   :config
   (setq projectile-completion-system 'ivy
-        projectile-enable-caching nil))
+        projectile-enable-caching nil
+        projectile-git-submodule-command nil))
 ;; Projectile support for counsel
 (use-package counsel-projectile
   :after (counsel projectile))
