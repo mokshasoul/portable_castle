@@ -67,8 +67,9 @@
 ;;; Faster than default
 (setq tramp-default-method "ssh")
 ;;; required for sudo piping on remote host
-(add-to-list tramp-default-host-alist
-      `("dragon" "root" "/ssh:admin@dragon:"))
+(add-to-list 'tramp-default-host-alist
+             '("reno" "root" "/ssh:admin@reno:")
+             '("dragon" "root" "/ssh:admin@dragon:"))
 
 ;;; Default is org
 (setq-default major-mode 'org-mode)
