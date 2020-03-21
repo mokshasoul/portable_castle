@@ -1,3 +1,5 @@
+;;; Commentary:
+
 ;;; Code:
 (require 'org)
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
@@ -8,13 +10,12 @@
 (setq org-outline-path-complete-in-steps nil)         ; Refile in a single go
 (setq org-refile-use-outline-path t)                  ; Show full paths for refiling                           (org-agenda-files :maxlevel . 9)))
 (setq org-log-done t
-      org-refile-use-outline-path t
       org-edit-timestamp-down-means-later t
       org-archive-mark-done nil
       org-hide-emphasis-markers t
       org-catch-invisible-edits 'show
       org-export-coding-system 'utf-8
-      org-fast-tag-selection-single-key 'expert
+                                        ; org-fast-tag-selection-single-key 'expert
       org-html-validation-link nil
       org-export-kill-product-buffer-when-displayed t
       org-tags-column 5
@@ -28,8 +29,7 @@
 ;; GTD Configuration
 ;; ****************************************************************
 (setq org-todo-keywords
-  '((sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)")))
-
+      '((sequence "TODO(t)" "STARTED(s)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)")))
 
 ;; link from clip
 (use-package org-cliplink
@@ -115,3 +115,4 @@
   :after calfw)
 
 (provide 'init-org)
+;;; init-org Ends here
