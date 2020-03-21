@@ -102,40 +102,10 @@
   :config
   (progn
     (setq org-projectile-projects-file
-          "~/Documents/_org/projects.org")
+          "~/Nextcloud/_org/projects.org")
     (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
     (push (org-projectile-project-todo-entry) org-capture-templates)))
-;; Supercharged agenda
-(use-package org-super-agenda
-  :disabled t
-  ;; :preface
-  ;; (defun super-jump-to-org-agenda ()
-  ;;   (interactive)
-  ;;   (let ((org-super-agenda-groups
-  ;;          '((:name "Today"
-  ;;                   :time-grid t
-  ;;                   :todo "TODAY")
-  ;;            (:name "Important"
-  ;;                   :tag "bills"
-  ;;                   :priority "A")
-  ;;            (:order-multi
-  ;;             (2 (:name "Shopping in town"
-  ;;                       :and (:tag "shopping" :tag "@town"))
-  ;;                (:name "Food-related"
-  ;;                       :tag ("food" "dinner"))
-  ;;                (:name "Personal"
-  ;;                       :habit t
-  ;;                       :tag "personal")
-  ;;                (:name "Space-related (non-moon-or-planet-related)"
-  ;;                       :and (:regexp ("space" "NASA")
-  ;;                                     :not (:regexp "moon" :tag "planet")))))
-  ;;            (:todo "WAITING" :order 8)
-  ;;            (:todo ("SOMEDAY" "TO-READ" "CHECK" "TO-WATCH" "WATCHING")
-  ;;                   :order 9)
-  ;;            (:priority<= "B" :order 1))))
-  ;;     (org-agenda nil "a")))
-  :config
-  (org-super-agenda-mode))
+
 ;; Calendar packages for org
 (use-package calfw)
 (require 'org-crypt)
