@@ -185,6 +185,6 @@ alias i3config="$EDITOR ~/.config/i3/config"
 alias i3status="$EDITOR ~/.config/i3/pystatus.py"
 alias svn_precommit="svn status | grep \"^!\" | awk \"\{print \$2\}\" |xargs svn delete"
 # FIX TRAMP ERRORS
-[[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ '
+# [[ $TERM == "dumb" ]] && unsetopt zle && PS1='$ '
 
 source /home/moksha/.config/broot/launcher/bash/br
