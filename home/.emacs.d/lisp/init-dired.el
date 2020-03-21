@@ -4,6 +4,8 @@
 (let ((gls (executable-find "gls")))
   (when gls (setq insert-directory-program gls)))
 
+
+;; More colors for dired
 (use-package diredfl
   :ensure t
   :config
@@ -14,7 +16,9 @@
   (setq dired-recursive-deletes 'top)
   (define-key dired-mode-map [mouse-2] 'dired-find-file)
   (define-key dired-mode-map (kbd "C-c C-p") 'wdired-change-to-wdired-mode))
+
 (require 'dired-x)
+
 (use-package diff-hl
   :ensure t
   :config
