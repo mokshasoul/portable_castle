@@ -35,7 +35,7 @@ floating_maximum_size 800x600
 force_focus_wrapping yes
 
 # start a terminal
-bindsym $mod+Return exec /usr/bin/alacritty
+bindsym $mod1+alt+t exec /usr/bin/alacritty
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -50,7 +50,7 @@ bindsym $mod+Shift+q kill
 # bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+d exec --no-startup-id rofi -show drun
 #Emulate Win+E in windows with thunar ranger is unnesesscary
-bindsym $mod+e exec --no-startup-id thunar
+bindsym $mod+e exec --no-startup-id dolphin
 
 # change focus
 bindsym $mod+h focus left
@@ -83,7 +83,7 @@ bindsym $mod+z layout toggle split
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -141,7 +141,9 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+# commented out in kde so we use polkit
+# bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec --no-startup-id qdbus org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.logout -1 -1 -1
 
 #Print screen found script on stackoverflow
 bindsym $mod+Print exec scrot -e 'mv $f ~/Pictures/Screenshots/ && gimp ~/Pictures/Screenshots/$f'
@@ -171,7 +173,7 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-set $Locker ~/bin/i3lock-wrapper.sh
+# set $Locker ~/bin/i3lock-wrapper.sh
 #Modes for managing pc power-state
 mode "(l)ock (s)leep (p)oweroff (r)estart" {
         bindsym s exec $Locker && systemctl suspend;mode "default"
@@ -211,7 +213,7 @@ bindsym $mod+Right move container to output right
 bindsym $mod+Left move container to output left
 
 #Change language
-# bindcode Mod1+50 exec --no-startup-id sh ~/bin/languangeSwitch.sh
+        # bindcode Mod1+50 exec --no-startup-id sh ~/bin/languangeSwitch.sh
 
 #FULL SCREEN FIX
 popup_during_fullscreen smart
@@ -237,12 +239,13 @@ workspace_layout tabbed
 workspace_auto_back_and_forth no
 
 # Workspace output location
-workspace $ws6 output HDMI3
+# workspace $ws6 output HDMI3
 
 #### Container Assignments ####
 # Windows to workspace assignment
-# WM_CLASS(STRING) = "instance", "class")
-assign [class="^keepassxc$"] $ws5
+# WM_CLASS(STRING) = "instance", "class"
+assign [class="emacs"] $ws4
+assign [class="keepassxc"] $ws5
 assign [class="^jetbrains-pycharm$"] $ws4
 assign [class="^Thunderbird$"] $ws3
 assign [class="^Gpa$"] $ws5
@@ -280,7 +283,7 @@ for_window [window_type="dialog"] floating enable
 for_window [title="TeamViewer"] floating disable
 for_window [class="^Skype$"] floating enable
 for_window [class="^Skype$" title=" - Skype$"] floating disable
-for_window [class="^Firefox$"] floating enable
+for_window [class="^Firefox$"] floating enable, move to $ws1
 for_window [class="^Firefox$" instance="^Places$"] floating disable
 for_window [class="^Firefox$" instance="^Navigator$"] floating disable
 for_window [class="Pavucontrol"] floating enable
@@ -298,8 +301,8 @@ for_window [instance="^sun-awt-X11-XFramePeer$" title="^JDownloader Updater$"] f
 for_window [window_role="pop-up"] floating enable
 for_window [window_role="task_dialog"] floating enable
 for_window [class="Steam"] floating disable
-for_window [title="\w*\s-\sVIM\b"] move to $ws2
-for_window [title="^mpsyt$"] move to $ws6
+# for_window [title="\w*\s-\sVIM\b"] move to $ws2
+# for_window [title="^mpsyt$"] move to $ws6
 # For all preferences
 for_window [title="^xdg-su: /sbin/yast2$"] floating enable
 for_window [title="Preferences$"] floating enable
@@ -323,7 +326,7 @@ for_window [class="yakuake"] floating enable, border none
 exec --no-startup-id wmctrl -c Plasma
 for_window [title="Desktop — Plasma"] kill; floating enable; border none
 # Notifications and non-interactive popups don't steal focus
-no_focus [class="plasmashell" window_type="notification"]
+for_window [class="plasmashell" window_type="notification"] floating enable, border none, move right 700px, move down 450px, no_focus
 no_focus [class="plasmashell" window_type="on_screen_display"]
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -342,12 +345,12 @@ no_focus [class="plasmashell" window_type="on_screen_display"]
 # exec --no-startup-id dropbox start
 # exec --no-startup-id /usr/lib/polkit-gnome-authentication-agent-1
 # exec --no-startup-id gsynaptics-init --sm-disable
-# exec --no-startup-id compton -b --config ~/.config/compton/compton.conf
+exec --no-startup-id picom -cb
 # exec --no-startup-id parcellite
 # exec --no-startup-id dunst
 # exec --no-startup-id nm-applet
 # exec --no-startup-id udiskie -2 -t
-# exec --no-startup-id redshift
+exec --no-startup-id redshift
 # exec --no-startup-id urxvtc-256color -name vim -e vim ~/Documents/todo.txt
 # exec --no-startup-id urxvtc-256color -name ranger -e ranger
 # exec --no-startup-id mpd
