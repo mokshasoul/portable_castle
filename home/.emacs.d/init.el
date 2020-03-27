@@ -20,7 +20,8 @@
 ;;----------------------------------------------------------------------------
 ;; Offload custom file which gets autowritten by package
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
-
+;; disable annoying s-SPC undefined
+(define-key global-map (kbd "s-SPC") 'ignore)
 (require 'init-utils)
 (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el
 ;; Calls (package-initialize)
