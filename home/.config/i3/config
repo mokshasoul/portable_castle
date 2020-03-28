@@ -170,7 +170,7 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-# set $Locker ~/bin/i3lock-wrapper.sh
+set $Locker /usr/bin/betterlockscreen -l
 #Modes for managing pc power-state
 mode "(l)ock (s)leep (p)oweroff (r)estart" {
         bindsym s exec $Locker && systemctl suspend;mode "default"
@@ -241,7 +241,7 @@ workspace_auto_back_and_forth no
 #### Container Assignments ####
 # Windows to workspace assignment
 # WM_CLASS(STRING) = "instance", "class"
-assign [class="emacs"] $ws4
+assign [class="^(E|e)macs"] $ws4
 assign [class="keepassxc"] $ws5
 assign [class="^jetbrains-pycharm$"] $ws4
 assign [class="^Thunderbird$"] $ws3
@@ -249,10 +249,10 @@ assign [class="^Gpa$"] $ws5
 assign [class="Chromium"] $ws1
 assign [class="mpv"] $ws6
 assign [class="AnyDesk"] $ws4
-assign [class="Keepassx"] $ws5
+assign [class="KeePassXC"] $ws5
 assign [title="\w*-\sVIM\b"] $ws2
 assign [class="^Skype$"] $ws3
-assign [class="^Firefox$"] $ws1
+assign [class="^(F|f)irefox$"] $ws1
 assign [class="^Soffice$"] $ws2
 assign [class="^libreoffice$"] $ws2
 assign [class="^ViberPC$"] $ws3
@@ -335,7 +335,7 @@ no_focus [class="plasmashell" window_type="on_screen_display"]
 
 #STARTUP PROGRAMS
 # exec --no-startup-id dbus-launch nm-applet  <-- GENTOO
-# exec --no-startup-id unclutter
+exec --no-startup-id unclutter
 # exec --no-startup-id pasystray
 # exec --no-startup-id dropbox start
 # exec --no-startup-id /usr/lib/polkit-gnome-authentication-agent-1
@@ -345,7 +345,7 @@ exec --no-startup-id picom -cb
 # exec --no-startup-id parcellite
 # exec --no-startup-id dunst
 # exec --no-startup-id nm-applet
-# exec --no-startup-id udiskie -2 -t
+exec --no-startup-id udiskie -asn
 exec --no-startup-id redshift
 # exec --no-startup-id urxvtc-256color -name vim -e vim ~/Documents/todo.txt
 # exec --no-startup-id urxvtc-256color -name ranger -e ranger

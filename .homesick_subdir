@@ -2,3 +2,5 @@
 .config
 .local/share/applications
 .config/alacritty
+.config/polybar
+.config/picom
