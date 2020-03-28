@@ -5,13 +5,7 @@
 ;;; Code:
 (add-hook 'after-init-hook 'winner-mode)
 
-;; Make "C-x o" prompt for a target window when there are more than 2
-(use-package switch-window
-  :ensure t
-  :init
-  (setq-default switch-window-shortcut-style 'alphabet)
-  (setq-default switch-window-timeout nil)
-  (global-set-key (kbd "C-x o") 'switch-window))
+
 ;;----------------------------------------------------------------------------
 ;; When splitting window, show (other-buffer) in the new window
 ;;----------------------------------------------------------------------------
