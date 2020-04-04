@@ -45,7 +45,7 @@ bindsym $mod+Shift+q kill
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod1+space exec --no-startup-id rofi -show drun
+bindsym $mod1+space exec --no-startup-id rofi -show combi
 #Emulate Win+E in windows with thunar ranger is unnesesscary
 bindsym $mod+e exec --no-startup-id dolphin
 
@@ -154,41 +154,41 @@ mode "resize" {
 # Pressing right will grow the window’s width.
 # Pressing up will shrink the window’s height.
 # Pressing down will grow the window’s height.
-        bindsym h resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym j resize shrink height 10 px or 10 ppt
-        bindsym l resize grow width 10 px or 10 ppt
+	bindsym h resize shrink width 10 px or 10 ppt
+		bindsym k resize grow height 10 px or 10 ppt
+		bindsym j resize shrink height 10 px or 10 ppt
+		bindsym l resize grow width 10 px or 10 ppt
 
 # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+		bindsym Left resize shrink width 10 px or 10 ppt
+		bindsym Down resize grow height 10 px or 10 ppt
+		bindsym Up resize shrink height 10 px or 10 ppt
+		bindsym Right resize grow width 10 px or 10 ppt
 
 # back to normal: Enter or Escape
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
 }
 
 set $Locker /usr/bin/betterlockscreen -l
 #Modes for managing pc power-state
 mode "(l)ock (s)leep (p)oweroff (r)estart" {
-        bindsym s exec $Locker && systemctl suspend;mode "default"
-        bindsym p exec systemctl poweroff;mode "default"
-        bindsym r exec systemctl reboot;mode "default"
-        bindsym l exec $Locker;mode "default"
+	bindsym s exec $Locker && systemctl suspend;mode "default"
+		bindsym p exec systemctl poweroff;mode "default"
+		bindsym r exec systemctl reboot;mode "default"
+		bindsym l exec $Locker;mode "default"
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
 }
 
 #Different display settings
 mode "(c)lone (e)xtend" {
-        bindsym c exec xrandr --output LVDS1 --auto --output VGA1 --auto;mode "default"
-        bindsym e exec sh ~/bin/setScreen.sh;mode "default"
+	bindsym c exec xrandr --output LVDS1 --auto --output VGA1 --auto;mode "default"
+		bindsym e exec sh ~/bin/setScreen.sh;mode "default"
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
 }
 
 #Bind to modes
@@ -200,8 +200,8 @@ bindsym $mod+x mode "(l)ock (s)leep (p)oweroff (r)estart"
 bindsym XF86AudioRaiseVolume exec --no-startup-id sh ~/bin/setAudio.sh plus
 bindsym XF86AudioLowerVolume exec --no-startup-id sh ~/bin/setAudio.sh minus
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 10%-
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s +10%
 
 #Container screen mover
 bindsym $mod+Shift+Left move workspace to output left
@@ -210,7 +210,7 @@ bindsym $mod+Right move container to output right
 bindsym $mod+Left move container to output left
 
 #Change language
-        # bindcode Mod1+50 exec --no-startup-id sh ~/bin/languangeSwitch.sh
+# bindcode Mod1+50 exec --no-startup-id sh ~/bin/languangeSwitch.sh
 
 #FULL SCREEN FIX
 popup_during_fullscreen smart

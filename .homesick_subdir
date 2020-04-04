@@ -4,3 +4,4 @@
 .config/alacritty
 .config/polybar
 .config/picom
+.config/sway
