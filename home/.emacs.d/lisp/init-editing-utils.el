@@ -187,7 +187,7 @@
 
 ;;; Which-key Configuration (interactive key commands)
 (use-package which-key
-  :defer 5
+  :defer 0
   :diminish
   :commands which-key-mode
   :config
