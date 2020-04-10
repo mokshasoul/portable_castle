@@ -188,6 +188,7 @@ bindsym $mod+Shift+minus move scratchpad
 # Show the next scratchpad window or hide the focused scratchpad window.
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
+bindsym $mod1+tab scratchpad show
 ### Workspace settings ####
 default_border pixel 
 default_floating_border pixel
@@ -248,6 +249,10 @@ bindsym XF86AudioPrev exec playerctl previous
 #
 # Take screenshots :)
 bindsym $mod+Shift+s grim -g "$(slurp)" - | wl-copy
+
+#
+# Quick switching between workspace contextes
+bindsym $mod+Tab workspace back_and_forth
 
 #
 # Workspace assignment of applications
