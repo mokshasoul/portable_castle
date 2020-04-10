@@ -110,7 +110,7 @@ gpg-connect-agent updatestartuptty /bye >/dev/null
 # export BASH_IT_THEME='zork'
 
 # SSH-AGENT
-export SSH_ASKPASS="/usr/bin/ksshaskpass"
+# export SSH_ASKPASS="/usr/bin/ksshaskpass"
 
 # (Advanced): Change this to the name of your remote repo if you
 # cloned bash-it with a remote other than origin such as `bash-it`.
