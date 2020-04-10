@@ -1,0 +1,14 @@
+[user]
+	email = cng_it@posteo.net
+	name = Charis-Nicolas Georgiou
+[alias]
+	# the acronym stands for "subtree add"
+
+	sba = "!f() { git subtree add --prefix $2 $1 master --squash; }; f"
+
+	# the acronym stands for "subtree update"
+
+	sbu = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
+
+[core]
+	excludesfile = ~/.gitignore
