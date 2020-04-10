@@ -102,8 +102,8 @@ alias killemacs="emacsclient -e '(save-buffers-kill-emacs)'"
 alias xclip="xclip -selection clip-board"
 alias delpyc="find . -name \"*.pyc\" -delete"
 case $OS in
-    Arch)
-        alias ls='ls --color=auto'
+    "Arch Linux")
+	source ~/.config/zsh/arch.zsh
         ;;
     Fedora)
         alias dnfi="sudo dnf install"
