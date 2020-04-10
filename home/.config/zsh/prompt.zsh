@@ -25,6 +25,6 @@ function git_prompt_info {
 #prompt="%{$fg[$color]%}%n%{$reset_color%}@%U%{%(#~$fg[red]~$fg[blue]~)%}%m%{$reset_color%}%u %T %B%~%b "
 # RPOMPT='${vim_mode}'
 # PROMPT='%~%<< $(git_prompt_info)${PR_BOLD_WHITE}>%{${reset_color}%}'
-# autoload -Uz promptinit
-# promptinit
-# prompt fire
+autoload -Uz promptinit
+promptinit
+prompt grml
