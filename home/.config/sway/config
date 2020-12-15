@@ -15,16 +15,18 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term alacritty
-font pango: Hack 9
+set $term kitty
+font pango:IBM Plex Mono 10
+exec xrdb ~/.Xresources
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu j4-dmenu-desktop --dmenu='bemenu -i --nb "#3f3f3f" --nf "#dcdccc" --fn "pango:Hack 12"' --term='alacritty'
+# set $menu j4-dmenu-desktop --dmenu='bemenu -i -w -n --nb "#ffffff" --nf "#0c0c0c" --hb "#c0c0c0" --fn "pango:Hack 12"' --term='kitty'
+set $menu wofi --show drun
 # set $menu bemenu-run
-
+seat seat0 xcursor_theme Bibata_Amber 32
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
@@ -60,10 +62,18 @@ output * bg ~/Pictures/Wallpapers/dark_deer.png fill
 #       middle_emulation enabled
 #   }
 #
+input "2:1:PS/2_Generic_Mouse" {
+    accel_profile adaptive
+        pointer_accel 1
+}
 input "2:7:SynPS/2_Synaptics_TouchPad" {
-      tap enabled
-      natural_scroll disabled
-      middle_emulation enabled
+    tap enabled
+        dwt enabled
+        natural_scroll enabled
+        middle_emulation enabled
+        accel_profile adaptive
+        scroll_factor 0.5
+        pointer_accel 0.25
 }
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
@@ -78,7 +88,7 @@ bindsym $mod+Return exec $term
 
 # Kill focused window
 bindsym $mod+Shift+q kill
-
+focus_follows_mouse yes
 # Start your launcher
 bindsym $mod+d exec $menu
 bindsym $mod1+space exec $menu
@@ -93,7 +103,22 @@ floating_modifier $mod normal
 bindsym $mod+Shift+c reload
 
 # Exit sway (logs you out of your Wayland session)
-bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+# bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+set $mode_system System: (l) lock, (e) logout, (s) suspend, (r) reboot, (S) shutdown, (R) UEFI
+mode "$mode_system" {
+    bindsym l exec $lock, mode "default"
+        bindsym e exit
+        bindsym s exec --no-startup-id systemctl suspend, mode "default"
+        bindsym r exec --no-startup-id systemctl reboot, mode "default"
+        bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
+        bindsym Shift+r exec --no-startup-id systemctl reboot --firmware-setup, mode "default"
+
+# return to default mode
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+Shift+e mode "$mode_system"
+
 #
 # Moving around:
 #
@@ -161,9 +186,10 @@ bindsym $mod+b splith
 bindsym $mod+v splitv
 
 # Switch the current container between different layout styles
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+z layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+s layout toggle split
+# bindsym $mod+e layout toggle split
 
 # Make the current focus fullscreen
 bindsym $mod+f fullscreen
@@ -190,7 +216,7 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 bindsym $mod1+tab scratchpad show
 ### Workspace settings ####
-default_border pixel 
+default_border pixel 2
 default_floating_border pixel
 
 # Resizing containers:
@@ -200,20 +226,20 @@ mode "resize" {
 # right will grow the containers width
 # up will shrink the containers height
 # down will grow the containers height
-	bindsym $left resize shrink width 10px
-		bindsym $down resize grow height 10px
-		bindsym $up resize shrink height 10px
-		bindsym $right resize grow width 10px
+    bindsym $right resize shrink width 10px
+        bindsym $up resize grow height 10px
+        bindsym $down resize shrink height 10px
+        bindsym $left resize grow width 10px
 
 # Ditto, with arrow keys
-		bindsym Left resize shrink width 10px
-		bindsym Down resize grow height 10px
-		bindsym Up resize shrink height 10px
-		bindsym Right resize grow width 10px
+        bindsym Left resize shrink width 10px
+        bindsym Down resize grow height 10px
+        bindsym Up resize shrink height 10px
+        bindsym Right resize grow width 10px
 
 # Return to default mode
-		bindsym Return mode "default"
-		bindsym Escape mode "default"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
 }
 bindsym $mod+r mode "resize"
 
@@ -222,18 +248,12 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-	position top
-
-# When the status_command prints a new line to stdout, swaybar updates.
-# The default just shows the current date and time.
-		status_command while date +'%Y-%m-%d %H:%M %p'; do sleep 1; done
-
-		colors {
-			statusline #ffffff
-				background #323232
-				inactive_workspace #32323200 #32323200 #5c5c5c
-		}
+    swaybar_command waybar
 }
+# gaps
+gaps outer 1
+gaps inner 0
+smart_gaps on
 #
 # Function key assignments
 bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -248,7 +268,8 @@ bindsym XF86AudioPrev exec playerctl previous
 
 #
 # Take screenshots :)
-bindsym $mod+Shift+s grim -g "$(slurp)" - | wl-copy
+bindsym $mod+Shift+s exec grim -g "$(slurp)" - | wl-copy
+bindsym $mod+w exec "MOZ_ENABLE_WAYLAND=1 firefox"
 
 #
 # Quick switching between workspace contextes
@@ -257,13 +278,73 @@ bindsym $mod+Tab workspace back_and_forth
 #
 # Workspace assignment of applications
 #
-assign [class="firefox"] $ws1
+## WS1 - browsers
+assign [app_id="firefox"] $ws1
+assign [class="Chromium"] $ws1
+## WS3 - Chat
+assign [app_id="telegramdesktop"] $ws3
+assign [class="Caprine"] $ws3
+assign [title="weechat"] $ws3
+assign [app_id="thunderbird"] $ws3
+assign [class="discord"] $ws3
+assign [class="ViberPC"] $ws3
+## WS5 - SEC
+assign [app_id="org.keepassxc.KeePassXC"] $ws5
+## WS6 Entertainment
+assign [app_id="mpv"] $ws6
+## WS7 GAMES
+assign [app_id="steam"] $ws7
+assign [app_id="lutris"] $ws7
+
+#
+# Workaround for buggy notifications in Telegram
+#
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [app_id="firefox" title="- Sharing Indicator$"] floating enable
+for_window [class="steam_app_\d+"] floating enable
+for_window [class="Wine"] floating enable
+for_window [app_id="imv"] floating enable
+for_window [app_id="pavucontrol"] floating enable, sticky enable, resize set width 550 px height 600px, move position cursor, move down 330
+for_window [title="Copying"] floating enable
+for_window [title="Discord Updater"] floating enable
+for_window [title="File Already Exist"] floating enable
+for_window [class="(?i)mpv"] floating enable
+
+
+for_window [window_role="task_dialog|bubble|page-info|Preferences|pop-up"] floating enable
+for_window [window_role="Open Files"] floating enable sticky
+for_window [window_role="File Operation Progress"] floating enable sticky
+for_window [window_role="Save As"] floating enable
+
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [instance="file_progress"]  sticky enable
+for_window [class="info|Mate-color-select|gcolor2|timesup|QtPass|GtkFileChooserDialog"] sticky enable
+for_window [app_id="telegramdesktop" title="TelegramDesktop"] {
+    floating enable
+        move position 0 px 0 px 
+}
+
+# focus settings
+no_focus [window_role="pop-up"]
+focus_on_window_activation focus
+
+for_window [class="chromium" instance="chromium"] border none
 
 
 #
 # AUTOSTART
 #
-exec --no-startup-id nextcloud
-exec mako
+exec nextcloud
+exec gammastep-indicator
+exec keepassxc
+exec mako --default-timeout=30
+exec autotiling
+exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# exec dropbox
 ### DEFAULT LINE ON THE BOTTOM
 include /etc/sway/config.d/*
