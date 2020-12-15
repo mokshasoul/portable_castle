@@ -1,3 +1,6 @@
+source ~/.config/zsh/antigen.zsh
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen apply
 source ~/.config/zsh/colors.zsh
 source ~/.config/zsh/setopt.zsh
 source ~/.config/zsh/exports.zsh

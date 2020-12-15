@@ -93,6 +93,11 @@
 (use-package dsvn)
 (use-package try) ;; test install packages
 (use-package ggtags)
+;;; Setup evil
+(use-package evil
+  :ensure t
+  :init
+  (evil-mode t))
 ;;; `server' for emacs
 (require 'server)
 (if (not (eq system-type 'windows-nt))
