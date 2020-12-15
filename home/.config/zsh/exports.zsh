@@ -9,11 +9,13 @@ export PATH="/opt/:/usr/local/bin/:${PATH}"
 # Standard
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-    export EDITOR='vim'
-    export VISUAL=$EDITOR
+	export EDITOR='vim'
+	export VISUAL=$EDITOR
 else
-    export EDITOR="emacsclient -t"                  # $EDITOR opens in terminal
-    export VISUAL="emacsclient -c -a emacs"         # $VISUAL opens in GUI mode
+	export EDITOR='nvim'
+	export VISUAL=$EDITOR
+	# export EDITOR="emacsclient -t"                  # $EDITOR opens in terminal
+	# export VISUAL="emacsclient -c -a emacs"         # $VISUAL opens in GUI mode
 fi
 
 
@@ -35,25 +37,25 @@ export MAVEN_OPTS="-Xms1024m -Xmx3G -noverify"
 # based on 
 # http://standards.freedesktop.org/basedir-spec/basedir-spec-latest.html
 if [[ -z "$XDG_DATA_HOME" ]]; then
-    export XDG_DATA_HOME="$HOME/.local/share"
+	export XDG_DATA_HOME="$HOME/.local/share"
 fi
 
 if [[ -z "$XDG_CONFIG_HOME" ]]; then
-    export XDG_CONFIG_HOME="$HOME/.config"
+	export XDG_CONFIG_HOME="$HOME/.config"
 fi
 
 if [[ -z "$XDG_CACHE_HOME" ]]; then
-    export XDG_CACHE_HOME="$HOME/.cache"
+	export XDG_CACHE_HOME="$HOME/.cache"
 fi
 
 if [[ -z "$XDG_DATA_DIRS" ]]; then
-    export XDG_DATA_DIRS="/usr/local/share:/usr/share"
+	export XDG_DATA_DIRS="/usr/local/share:/usr/share"
 fi
 
 if [[ -z "$XDG_CONFIG_DIRS" ]]; then
-    export XDG_CONFIG_DIRS="/etc/xdg"
+	export XDG_CONFIG_DIRS="/etc/xdg"
 else
-    export XDG_CONFIG_DIRS="/etc/xdg:$XDG_CONFIG_DIRS"
+	export XDG_CONFIG_DIRS="/etc/xdg:$XDG_CONFIG_DIRS"
 fi
 
 # ssh-key option

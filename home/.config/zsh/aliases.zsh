@@ -43,16 +43,16 @@ alias mountiso="udisksctl loop-setup -r -f"
 alias zshconfig="${VISUAL} ~/.zshrc"
 alias zshconfigp="${VISUAL} ~/.zsh/prompt.zsh"
 alias zshconfiga="${VISUAL} ~/.zsh/aliases.zsh"
-alias zshconfigb="vim ~/.zsh/bindkeys.zsh"
-alias zshconfigc="vim ~/.zsh/completion.zsh"
-alias zshconfigcol="vim ~/.zsh/colors.zsh"
-alias zshconfigf="vim ~/.zsh/functions.zsh"
-alias zshconfigh="vim ~/.zsh/history.zsh"
-alias zshconfigs="vim ~/.zsh/setopt.zsh"
-alias zshconfige="vim ~/.zsh/exports.zsh"
-alias zshconfighooks="vim ~/.zsh/zsh_hooks.zsh"
-alias i3config="vim ~/.config/i3/config"
-alias i3status="vim ~/.config/i3/pystatus.py"
+alias zshconfigb="${VISUAL} ~/.zsh/bindkeys.zsh"
+alias zshconfigc="${VISUAL} ~/.zsh/completion.zsh"
+alias zshconfigcol="${VISUAL} ~/.zsh/colors.zsh"
+alias zshconfigf="${VISUAL} ~/.zsh/functions.zsh"
+alias zshconfigh="${VISUAL} ~/.zsh/history.zsh"
+alias zshconfigs="${VISUAL} ~/.zsh/setopt.zsh"
+alias zshconfige="${VISUAL} ~/.zsh/exports.zsh"
+alias zshconfighooks="${VISUAL} ~/.zsh/zsh_hooks.zsh"
+alias i3config="${VISUAL} ~/.config/i3/config"
+alias i3status="${VISUAL} ~/.config/i3/pystatus.py"
 alias masterdir="cd ~/Dropbox/University\ Stuff/TUM/Master_Thesis"
 alias svn_precommit="svn status | grep \"^!\" | awk \"\{print \$2\}\" |xargs svn delete"
 
@@ -76,7 +76,8 @@ autoload -Uz age
 # alias -g .... = '../../..'
 # alias -g ..... = '../../../..'
 # .extensions opens with program
-alias -s .tex ='nvim'
+alias -s .tex='${VISUAL}'
+alias -s .zsh='${VISUAL}'
 alias -s .html='firefox'
 alias -s .pdf='zathura'
 
