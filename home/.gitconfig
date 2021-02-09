@@ -1,14 +1,25 @@
 [user]
-	email = cng_it@posteo.net
-	name = Charis-Nicolas Georgiou
+    email = cng_it@posteo.net
+    name = Charis-Nicolas Georgiou
 [alias]
-	# the acronym stands for "subtree add"
+    # the acronym stands for "subtree add"
 
-	sba = "!f() { git subtree add --prefix $2 $1 master --squash; }; f"
+    sba = "!f() { git subtree add --prefix $2 $1 master --squash; }; f"
 
-	# the acronym stands for "subtree update"
+    # the acronym stands for "subtree update"
 
-	sbu = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
+    sbu = "!f() { git subtree pull --prefix $2 $1 master --squash; }; f"
+
+    # quickly select what to rebase
+    #
+    frbi = "!f() { git rebase -i $(git log --pretty=oneline --color=always | fzf --ansi | cut -d ' ' -f1)^ ; }; f"
+   # quicly switch branches
+   # 
+    sw = !git checkout $(git branch -a --format '%(refname:short)' | sed 's~origin/~~' | sort | uniq | fzf)
 
 [core]
-	excludesfile = ~/.gitignore
+    excludesfile = ~/.gitignore
+[init]
+    defaultBranch = master
+[pull]
+	rebase = true

@@ -24,8 +24,6 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'davidhalter/jedi-vim'
 Plug 'tpope/vim-jdaddy'
 Plug 'mrk21/yaml-vim'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'zchee/deoplete-jedi'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -119,3 +117,11 @@ autocmd FileType htmldjango inoremap {# {#  #}<left><left><left>
 " Markdown and Journal
 autocmd FileType markdown setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType journal setlocal shiftwidth=2 tabstop=2 softtabstop=2
+
+" i3 config files
+aug i3config_ft_detection
+    au!
+    au BufNewFile,BufRead ~/.config/i3/config set filetype=i3config
+    au BufNewFile,BufRead ~/.config/sway/config set filetype=i3config
+    au BufNewFile,BufRead ~/.config/sway/sway.d/* set filetype=i3config
+aug end
