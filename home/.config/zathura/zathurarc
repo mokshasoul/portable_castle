@@ -1,0 +1,20 @@
+set show-recent true
+set selection-clipboard clipboard
+set first-page-column 1:1
+set adjust-open "best-fit"
+set pages-per-row 1
+set page-padding 10
+set scroll-page-aware "true"
+set scroll-full-overlap 0.01
+set zoom-min 10
+set guioptions "svh"
+set font "DejaVu Sans Mono 11"
+set statusbar-v-padding 20
+set statusbar-h-padding 20
+set statusbar-basename "true"
+set statusbar-home-tilde "true"
+set scroll-step 50
+unmap f
+map f toggle_fullscreen
+map [fullscreen] f toggle_fullscreen
+include zathurarc-gruvbox-light

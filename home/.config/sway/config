@@ -113,10 +113,10 @@ set $mode_system System: (l) lock, (e) logout, (s) suspend, (r) reboot, (S) shut
 mode "$mode_system" {
         bindsym l exec $lock, mode "default"
         bindsym e exit
-        bindsym s exec --no-startup-id systemctl suspend, mode "default"
-        bindsym r exec --no-startup-id systemctl reboot, mode "default"
-        bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
-        bindsym Shift+r exec --no-startup-id systemctl reboot --firmware-setup, mode "default"
+        bindsym s exec systemctl suspend, mode "default"
+        bindsym r exec systemctl reboot, mode "default"
+        bindsym Shift+s exec systemctl poweroff -i, mode "default"
+        bindsym Shift+r exec systemctl reboot --firmware-setup, mode "default"
 
 # return to default mode
         bindsym Return mode "default"
@@ -211,7 +211,7 @@ bindsym $mod+f fullscreen
 bindsym $mod+Shift+space floating toggle
 
 # Swap focus between the tiling area and the floating area
-bindsym $mod+space focus mode_toggle
+bindsym $mod+Shift+f focus mode_toggle
 
 # Move focus to the parent container
 bindsym $mod+a focus parent
