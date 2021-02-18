@@ -6,3 +6,4 @@
 .config/picom
 .config/sway
 .config/zathura
+.config/environment.d
