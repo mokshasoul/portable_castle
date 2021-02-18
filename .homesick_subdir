@@ -4,6 +4,3 @@
 .config/alacritty
 .config/polybar
 .config/picom
-.config/sway
-.config/zathura
-.config/environment.d
