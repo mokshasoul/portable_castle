@@ -260,12 +260,12 @@ bindsym $mod+r mode "resize"
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
-bar {
-    swaybar_command waybar
-}
+# bar {
+#     swaybar_command waybar
+# }
 # gaps
-gaps outer 1
-gaps inner 0
+gaps outer 0
+gaps inner 1
 smart_gaps on
 #
 # Take screenshots :)
@@ -278,28 +278,7 @@ bindsym $mod+Tab workspace back_and_forth
 
 #
 # Workspace assignment of applications
-#
-## WS1 - browsers
-assign [app_id="firefox"] $ws1
-assign [class="Firefox"] $ws1
-assign [class="Chromium"] $ws1
-## WS3 - Chat
-assign [app_id="telegramdesktop"] $ws3
-assign [class="Caprine"] $ws3
-assign [title="weechat"] $ws3
-assign [app_id="thunderbird"] $ws3
-assign [class="Thunderbird"] $ws3
-assign [class="discord"] $ws3
-assign [class="ViberPC"] $ws3
-## WS4 WORK
-assign [class="libreoffice"] $ws5
-## WS5 - SEC
-assign [app_id="org.keepassxc.KeePassXC"] $ws5
-## WS6 Entertainment
-assign [app_id="mpv"] $ws6
-## WS7 GAMES
-assign [app_id="steam"] $ws7
-assign [app_id="lutris"] $ws7
+# in 03_workspace.conf
 
 #
 # Floating windows info's in 06_floating.conf
@@ -310,15 +289,20 @@ assign [app_id="lutris"] $ws7
 # AUTOSTART
 #
 # exec nextcloud
-exec gammastep-indicator
+exec nm-applet --indicator
+# exec gammastep-indicator
 exec keepassxc
-exec mako --default-timeout=30
-exec autotiling
-exec udiskie -2
-exec thunar --daemon
+# exec mako --default-timeout=30
+# exec autotiling
+# exec udiskie -2
+# exec thunar --daemon
 exec thunderbird
 # exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 
+exec "hash dbus-update-activation-environment 2>/dev/null; \
+     dbus-update-activation-environment --all; \
+     dbus-update-activation-environment --systemd; \
+     systemctl --user start sway-session.target"
 # exec dropbox
 ### DEFAULT LINE ON THE BOTTOM
 include /etc/sway/config.d/*

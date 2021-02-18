@@ -53,3 +53,4 @@ home/.emacs.d/server/server
 /home/.emacs.d/.mc-lists.el
 /home/.emacs.d/.directory
 /home/.tmux/plugins/tmux-resurrect/
+home/.emacs.d/*-cache

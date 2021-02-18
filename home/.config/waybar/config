@@ -1,3 +1,4 @@
+// vim:ft=json
 {
 	    "layer": "top",
 		"position": "top",
@@ -11,10 +12,11 @@
 			"sway/window"
 		],
 		"modules-right": [
-			"idle_inhibitor",
 		"network",
 		"backlight",
 		"custom/keyboard-layout",
+        "cpu",
+        "memory",
 		"battery",
 		"pulseaudio",
         "custom/weather",
@@ -184,10 +186,9 @@
 			"exec": "curl -s 'https://wttr.in/Berlin?format=1' |jq --unbuffered --compact-output -M -R '{text:.}'",
 			"exec-if": "ping wttr.in -c1",
 			"on-click-right": "kitty --start-as fullscreen bash -ci ~/bin/wttr"
-				// "on-click-right": "alacritty -e bash -ci ~/bin/wttr"
 		},
         "sway/window": {
             "format": "{}",
-            "max-length": 40
+            "max-length": 30
         }
 }
