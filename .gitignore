@@ -1,4 +1,15 @@
 .vscode
 __pycache__
-elpa*/**
-**/.*cache.*/
+elpa**
+.*cache**
+tramp
+recentf
+places
+history
+.netrwhist
+.*bookmarks.el
+.#**
+.mc-lists.el
+.session
+eshell
+url/
