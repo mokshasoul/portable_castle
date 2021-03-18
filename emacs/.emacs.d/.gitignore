@@ -1,1 +1,16 @@
-/home/.emacs.d/.emacs.desktop
+elpa/
+elpy/
+eln-cache/
+eln-cache/**
+**/elpa.*/**
+**/elpy/**
+network-security.data
+auto-save-list/
+auto-save-list/**
+projectile-bookmarks.eld
+transient/
+.emacs.desktop.*
+/projectile.*
+tramp.*
+places.*
+recentf.*
