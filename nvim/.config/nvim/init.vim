@@ -1,20 +1,3 @@
-set iskeyword+=-                      	" treat dash separated words as a word text object"
-set formatoptions-=cro                  " Stop newline continution of comments
-
-syntax enable                           " Enables syntax highlighing
-filetype plugin indent on
-set hidden                              " Required to keep multiple buffers open multiple buffers
-set nowrap                              " Display long lines as just one line
-set number
-set ruler              			            " Show the cursor position all the time
-set nobackup                            " This is recommended by coc
-set nowritebackup                       " This is recommended by coc
-set autochdir
-set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
-set encoding=utf-8
-set title
-let mapleader = ","
-
 " PLUGIN MANAGEMENT
 " Install vim plug via: 
 " curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
@@ -30,7 +13,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdcommenter'
 Plug 'sbdchd/neoformat'
-Plug 'scrooloose/nerdtree'
 Plug 'mboughaba/i3config.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tmhedberg/SimpylFold'
@@ -38,7 +20,7 @@ Plug 'mcchrish/nnn.vim'
 Plug 'elzr/vim-json'
 Plug 'aouelete/sway-vim-syntax'
 Plug 'raghur/vim-ghost', {'do': ':GhostInstall'}
-Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim', {'do': { -> fzf#install() }}
 Plug 'neomake/neomake'
 Plug 'iCyMind/NeoSolarized'
 Plug 'machakann/vim-highlightedyank'
@@ -49,6 +31,29 @@ call plug#end()
 " autocomplete settings (deoplete)
 " options with :h deoplete-options
 " let g:deoplete#enable_at_startup = 1
+
+set iskeyword+=-                      	" treat dash separated words as a word text object"
+set formatoptions-=cro                  " Stop newline continution of comments
+
+syntax enable                           " Enables syntax highlighing
+filetype plugin indent on
+set colorcolumn=+1
+set diffopt+=vertical
+set list
+set hidden                              " Required to keep multiple buffers open multiple buffers
+set nowrap                              " Display long lines as just one line
+set number
+set ruler              			            " Show the cursor position all the time
+set nobackup                            " This is recommended by coc
+set nowritebackup                       " This is recommended by coc
+set autochdir
+set tabstop=4 softtabstop=4 shiftwidth=4 expandtab smarttab autoindent
+set encoding=utf-8
+set title
+set completeopt=longest,menuone,preview
+set wildmode=longest:full,full
+set cursorline
+let mapleader = ","
 
 colorscheme NeoSolarized
 "set background=light
@@ -75,11 +80,25 @@ let g:neomake_python_enabled_makers = ['pylint']
 " Disable default mappings
 let g:nnn#set_default_mappings = 0
 
-" Then set your own
+"
+" MAPS
+"" Then set your own
 nnoremap <silent> <leader>nn :NnnPicker<CR>
 nnoremap <silent> <leader>w :w<CR>
 
+set pastetoggle=<F6>
+map <C-p> :FZF<CR>
 
+set wildignore+=.git,.hg,.svn
+set wildignore+=*.aux,*.out,*.toc
+set wildignore+=*.o,*.obj,*.exe,*.dll,*.manifest,*.rbc,*.class
+set wildignore+=*.ai,*.bmp,*.gif,*.ico,*.jpg,*.jpeg,*.png,*.psd,*.webp
+set wildignore+=*.avi,*.divx,*.mp4,*.webm,*.mov,*.m2ts,*.mkv,*.vob,*.mpg,*.mpeg
+set wildignore+=*.mp3,*.oga,*.ogg,*.wav,*.flac
+set wildignore+=*.eot,*.otf,*.ttf,*.woff
+set wildignore+=*.doc,*.pdf,*.cbr,*.cbz
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz,*.kgb
+set wildignore+=*.swp,.lock,.DS_Store,._*
 " Or override
 " Start nnn in the current file's directory
 nnoremap <leader>n :NnnPicker '%:p:h'<CR>
