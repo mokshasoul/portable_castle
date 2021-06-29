@@ -17,9 +17,12 @@
    # 
     sw = !git checkout $(git branch -a --format '%(refname:short)' | sed 's~origin/~~' | sort | uniq | fzf)
 
+	logt = log --graph --decorate --color=auto --oneline --all
 [core]
     excludesfile = ~/.gitignore
 [init]
     defaultBranch = main
 [pull]
 	rebase = true
+[pretty]
+	fixes = Fixes: %h (\"%s\")
