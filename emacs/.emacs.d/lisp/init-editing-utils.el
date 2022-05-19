@@ -84,6 +84,8 @@
 
 (use-package undo-tree
   :diminish
+  :config
+  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
   :init
   (global-undo-tree-mode))
 

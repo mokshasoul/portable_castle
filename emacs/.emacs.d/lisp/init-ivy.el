@@ -52,6 +52,8 @@
   :config
   (setq xref-show-xrefs-function 'ivy-xref-show-xrefs))
 
+(use-package lsp-ivy
+  :ensure t)
 
 (provide 'init-ivy)
 ;;; init-ivy.el Ends here

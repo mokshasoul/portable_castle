@@ -37,12 +37,6 @@
 
 (add-to-list 'completion-styles 'initials t)
 
-(use-package company-jedi
-  :config
-  (progn
-    (defun my/python-mode-hook ()
-      (add-to-list 'company-backends  'company-jedi))
-    (add-hook 'python-mode-hook 'my/python-mode-hook)))
 
 (use-package company-auctex
   :after (company latex))
