@@ -12,4 +12,5 @@ history
 .mc-lists.el
 .session
 eshell
-url/
+url/**
+***/undo/***
