@@ -19,9 +19,9 @@
       org-html-validation-link nil
       org-export-kill-product-buffer-when-displayed t
       org-tags-column 5
-      org-directory '("~/Nextcloud/_org/")
+      org-directory '("~/pws/notes/_org/")
       org-agenda-files '("~/Nextcloud/_org/agenda/")
-      org-default-notes-file "~/Nextcloud/_org/notes.org")
+      org-default-notes-file "~/pws/notes/_org/notes.org")
 ;; inserts full filename at top of file to link different org files
 ;; (use-package org-fstree
 ;;   :ensure t)
@@ -114,5 +114,16 @@
 (use-package calfw-org
   :after calfw)
 
+(use-package org-roam)
+;; org-roam
+(setq org-roam-directory "~/pws/notes/_org/roam/")
+(org-roam-db-autosync-mode)
+(setq org-roam-dailies-directory "daily/")
+
+(setq org-roam-dailies-capture-templates
+      '(("d" "default" entry
+         "* %?"
+         :target (file+head "%<%Y-%m-%d>.org"
+                            "#+title: %<%Y-%m-%d>\n"))))
 (provide 'init-org)
-;;; init-org Ends here
+;;; init-org.el Ends here

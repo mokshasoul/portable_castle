@@ -1,12 +1,12 @@
-;;; init-company --- Company Configuration
+;;; init-terraform --- Terraform Configuration
 
-;; Copyright (C) 2020 Charis-Nicolas Georgiou
+;; Copyright (C) 2022 Charis-Nicolas Georgiou
 
 ;; Author: Charis-Nicolas Georgiou <cng_it@posteo.net>
-;; Created: 11 Feb 2020
+;; Created: 27 May 2022
 ;; Version: 1.0
-;; Keywords: company-mode autocomplete company
-;; X-URL: https://github.com/mokshasoul/dotfiles
+;; Keywords: prog
+;; X-URL: https://github.com/mokshasoul/portable_castle
 
 ;; This program is free software; you can redistribute it and/or
 ;; modify it under the terms of the GNU General Public License as
@@ -24,25 +24,16 @@
 ;; Boston, MA 02111-1307, USA.
 
 ;;; Commentary:
-;; Hello World
+;;; Help 1 2 3
+
 ;;; Code:
 ;;
-(setq tab-always-indent 'complete)
+(use-package terraform-mode
+  :ensure t)
 
-(use-package company
-  :config
-  (setq company-idle-delay 0
-        company-minimum-prefix-length 3)
-  (global-company-mode t))
+(use-package company-terraform
+  :after (company)
+  :ensure t)
 
-(add-to-list 'completion-styles 'initials t)
-
-
-(use-package company-auctex
-  :after (company latex))
-
-(use-package company-php
-  :after (company php))
-
-(provide 'init-company)
-;;; init-company.el ends here
+(provide 'init-terraform)
+;;; init-terraform.el ends here

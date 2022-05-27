@@ -85,11 +85,11 @@ Call a second time to restore the original window configuration."
   (windmove-default-keybindings 'control))
 ;;; Ace-Window Configuration
 (use-package ace-window
-  :bind ("C-x o" . ace-window)
+  :bind ("M-o" . ace-window)
   :config
   (setq aw-dispatch-always nil
-        aw-keys '(?a ?s ?d ?f ?g ?j ?k ?l))
-    (custom-set-faces
-     '(aw-leading-char-face
+    aw-keys '(?a ?s ?d ?f ?g ?j ?k ?l))
+  (custom-set-faces
+    '(aw-leading-char-face
        ((t (:inherit ace-jump-face-foreground :height 2.0))))))
 (provide 'init-windows)

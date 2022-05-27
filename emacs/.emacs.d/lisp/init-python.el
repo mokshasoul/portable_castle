@@ -9,18 +9,20 @@
                          (lsp)))) ; or lsp-defered for lazy
 
 
-(use-package virtualenvwrapper
-  :config
-  (venv-initialize-interactive-shells)
-  (venv-initialize-eshell))
+(use-package pyvenv
+  :ensure t
+  :hook (
+          (python-mode . pyvenv-activate)))
 
 (use-package poetry
-  :ensure t)
-(use-package pipenv
   :ensure t
-  :hook (python-mode . poetry-tracking-mode))
+  :hook (
+          (python-mode . poetry-tracking-mode)))
 
-(setq flycheck-flake8-maximum-line-length 80)
+(use-package pipenv
+  :ensure t)
+
+(setq flycheck-flake8-maximum-line-length 120)
 
 (provide 'init-python)
 ;;; init-python.el Ends here

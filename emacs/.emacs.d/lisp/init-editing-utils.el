@@ -1,3 +1,37 @@
+;;; init-editing-utils --- EditingUtils
+
+;; Copyright (C) 2022 Charis-Nicolas Georgiou
+
+;; Author: Charis-Nicolas Georgiou <cng_it@posteo.net>
+;; Created: 25 May 2022
+;; Version: 1.0
+;; Keywords: wp
+;; X-URL: https://github.com/mokshasoul/portable_castle/
+
+;; This program is free software; you can redistribute it and/or
+;; modify it under the terms of the GNU General Public License as
+;; published by the Free Software Foundation; either version 2, or (at
+;; your option) any later version.
+
+;; This program is distributed in the hope that it will be useful, but
+;; WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+;; General Public License for more details.
+
+;; You should have received a copy of the GNU General Public License
+;; along with GNU Emacs; see the file COPYING.  If not, write to the
+;; Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+;; Boston, MA 02111-1307, USA.
+
+;;; Commentary:
+;;; Utilities taken from different repos
+;;; Code:
+;;
+
+(provide 'init-editing-utils)
+
+;;; init-editing-utils.el ends here
+
 (use-package unfill :ensure t)
 ;;; visual line wrap
 (visual-line-mode t)
@@ -6,25 +40,28 @@
   (add-hook 'after-init-hook 'electric-pair-mode))
 (when (eval-when-compile (version< "24.4" emacs-version))
   (add-hook 'after-init-hook 'electric-indent-mode))
-(use-package list-unicode-display :ensure t)
+
+(use-package list-unicode-display
+  :ensure t)
+
 (setq-default blink-cursor-interval 0.4
-              bookmark-default-file (expand-file-name ".bookmarks.el" user-emacs-directory)
-              buffers-menu-max-size 30
-              case-fold-search t
-              column-number-mode t
-              delete-selection-mode t
-              ediff-split-window-function 'split-window-horizontally
-              ediff-window-setup-function 'ediff-setup-windows-plain
-              indent-tabs-mode nil ;;turns tabs to spaces
-              make-backup-files nil
-              mouse-yank-at-point t
-              save-interprogram-paste-before-kill t
-              scroll-preserve-screen-position 'always
-              set-mark-command-repeat-pop t
-              tooltip-delay 1.5
-              truncate-lines nil
-              truncate-partial-width-windows nil
-              scroll-conservatively 10000)
+  bookmark-default-file (expand-file-name ".bookmarks.el" user-emacs-directory)
+  buffers-menu-max-size 30
+  case-fold-search t
+  column-number-mode t
+  delete-selection-mode t
+  ediff-split-window-function 'split-window-horizontally
+  ediff-window-setup-function 'ediff-setup-windows-plain
+  indent-tabs-mode nil ;;turns tabs to spaces
+  make-backup-files nil
+  mouse-yank-at-point t
+  save-interprogram-paste-before-kill t
+  scroll-preserve-screen-position 'always
+  set-mark-command-repeat-pop t
+  tooltip-delay 1.5
+  truncate-lines nil
+  truncate-partial-width-windows nil
+  scroll-conservatively 10000)
 
 ;;; Autoread file changed on disk
 (add-hook 'after-init-hook 'global-auto-revert-mode)
@@ -85,7 +122,8 @@
 (use-package undo-tree
   :diminish
   :config
-  (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
+  (setq undo-tree-history-directory-alist (list
+                                            (cons "." (expand-file-name "undo" user-emacs-directory))))
   :init
   (global-undo-tree-mode))
 
@@ -168,7 +206,8 @@
   (global-set-key (kbd "C-c m c") 'mc/edit-lines)
   (global-set-key (kbd "C-c m e") 'mc/edit-ends-of-lines)
   (global-set-key (kbd "C-c m a") 'mc/edit-beginnings-of-lines))
-(defun kill-back-to-indentation ()
+
+(defun init-editing-utils/kill-back-to-indentation ()
   "Kill from point back to the first non-whitespace character on the line."
   (interactive)
   (let ((prev-pos (point)))
@@ -201,4 +240,4 @@
 (global-set-key [remap list-buffers] #'buffer-menu)
 
 (provide 'init-editing-utils)
-;; init-editing-utils.el Ends here
+;;; init-editing-utils.el ends here

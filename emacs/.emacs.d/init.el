@@ -80,7 +80,10 @@
 ;; YAML, Markdown and latex support
 (require 'init-yaml)
 (require 'init-markdown)
-
+(require 'init-lisp)
+(require 'init-slime)
+(require 'init-clojure)
+(require 'init-clojure-cider)
 ;; Misc
 (require 'init-docker)
 (require 'init-docmodes)
