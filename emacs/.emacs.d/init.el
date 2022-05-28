@@ -14,7 +14,7 @@
 
 ;;; Add lisp folder to path in order to load the init files
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-(require 'init-benchmarking)
+
 ;;----------------------------------------------------------------------------
 ;; Bootstrap config (taken from purcell)
 ;;----------------------------------------------------------------------------
