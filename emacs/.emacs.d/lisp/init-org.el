@@ -19,9 +19,9 @@
       org-html-validation-link nil
       org-export-kill-product-buffer-when-displayed t
       org-tags-column 5
-      org-directory '("~/pws/notes/_org/")
-      org-agenda-files '("~/Nextcloud/_org/agenda/")
-      org-default-notes-file "~/pws/notes/_org/notes.org")
+      org-directory (expand-file-name "_org" "~")
+      org-agenda-files (expand-file-name "agenda" org-directory)
+      org-default-notes-file (expand-file-name "notes.org" org-directory))
 ;; inserts full filename at top of file to link different org files
 ;; (use-package org-fstree
 ;;   :ensure t)
@@ -102,7 +102,7 @@
   :config
   (progn
     (setq org-projectile-projects-file
-          "~/Nextcloud/_org/projects.org")
+          (expand-file-name "projects.org" org-directory))
     (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
     (push (org-projectile-project-todo-entry) org-capture-templates)))
 
@@ -114,9 +114,10 @@
 (use-package calfw-org
   :after calfw)
 
-(use-package org-roam)
+(use-package org-roam
+  :ensure t)
 ;; org-roam
-(setq org-roam-directory "~/pws/notes/_org/roam/")
+(setq org-roam-directory (expand-file-name "roam" org-directory))
 (org-roam-db-autosync-mode)
 (setq org-roam-dailies-directory "daily/")
 
