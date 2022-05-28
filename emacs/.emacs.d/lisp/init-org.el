@@ -45,13 +45,13 @@
 ;;; Set Org-Capture templates
 (setq org-capture-templates
       '(("t" "todo" entry
-         (file+headline "~/Nextcloud/_org/agenda/tasks.org" "Tasks")
+         (file+headline (expand-file-name "tasks.org" org-agenda-files) "Tasks")
          "** TODO %^{Brief description} %^g\n%?\nAdded: %U")
         ("n" "note" entry
-         (file+headline "~/Nextcloud/_org/notes.org" "Notes")
+         (file+headline org-default-notes-file "Notes")
          "** :NOTE:\n%U\n%a\n" :clock-keep t)
         ("h" "habit" entry
-         (file+headline "~/Nextcloud/_org/tasks.org" "Habits")
+         (file+headline (expand-file-name "tasks.org" org-agenda-files) "Habits")
          "** TODO %^{Brief description}%^t")))
 
 (global-set-key (kbd "C-c l") #'org-store-link)
@@ -108,6 +108,7 @@
 (require 'org-crypt)
 (org-crypt-use-before-save-magic)
 (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+
 (use-package calfw-org
   :after calfw)
 
