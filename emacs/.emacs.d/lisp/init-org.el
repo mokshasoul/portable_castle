@@ -54,12 +54,9 @@
          (file+headline "~/Nextcloud/_org/tasks.org" "Habits")
          "** TODO %^{Brief description}%^t")))
 
-
-(define-key global-map (kbd "C-c l") 'org-store-link)
-(define-key global-map (kbd "C-c c") 'org-capture)
-(define-key global-map (kbd "C-c a") 'org-agenda)
-
-
+(global-set-key (kbd "C-c l") #'org-store-link)
+(global-set-key (kbd "C-c a") #'org-agenda)
+(global-set-key (kbd "C-c c") #'org-capture)
 
 ;; Lots of stuff from http://doc.norang.ca/org-mode.html
 
