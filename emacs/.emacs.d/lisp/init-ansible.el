@@ -26,9 +26,12 @@
 ;;; Commentary:
 ;; This is awesomeness
 ;;; Code:
-(use-package ansible)
-(use-package ansible-doc)
-(use-package company-ansible)
+(use-package ansible
+  :ensure t)
+(use-package ansible-doc
+  :ensure t)
+(use-package company-ansible
+  :ensure t)
 
 (provide 'init-ansible)
 ;;; init-ansible.el ends here
