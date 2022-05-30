@@ -25,13 +25,14 @@
 (require 'init-utils)
 (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el
 ;; Calls (package-initialize)
-(require 'init-elpa)      ;; Machinery for installing required packages
+(require 'init-elpa)   ;; Machinery for installing required packages
 (require 'init-exec-path) ;; Set up $PATH
 
 (use-package wgrep)
 (use-package diminish)
 (use-package scratch)
 (use-package command-log-mode)
+(use-package dash)
 ;; Configure interface
 (require 'init-theme)
 (require 'init-gui-frames)
