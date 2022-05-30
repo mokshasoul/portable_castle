@@ -39,16 +39,19 @@
 (use-package projectile
   :ensure t
   :bind (
-          ("C-c p" . projectile-command-map))
+         ("C-c p" . projectile-command-map))
   :hook
   (after-init . projectile-mode)
   :config (
-            setq projectile-completion-system 'ivy
-            projectile-enable-caching nil
-            projectile-git-submodule-command nil))
+           setq projectile-completion-system 'ivy
+           projectile-enable-caching nil
+           projectile-git-submodule-command nil))
+
 ;; Projectile support for counsel
 (use-package counsel-projectile
-  :after (counsel projectile))
+  :after (counsel projectile)
+  :config
+  (counsel-projectile-mode 1))
 
 (provide 'init-projectile)
 ;;; init-projectile.el ends here
