@@ -31,9 +31,7 @@
 (use-package terraform-mode
   :ensure t)
 
-(use-package company-terraform
-  :after (company)
-  :ensure t)
+
 
 (provide 'init-terraform)
 ;;; init-terraform.el ends here

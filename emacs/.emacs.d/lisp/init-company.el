@@ -30,6 +30,8 @@
 (setq tab-always-indent 'complete)
 
 (use-package company
+  :defer 5
+  :diminish
   :config
   (setq company-idle-delay 0
         company-minimum-prefix-length 3)
@@ -39,10 +41,16 @@
 
 
 (use-package company-auctex
+  :ensure t
   :after (company latex))
 
 (use-package company-php
+  :ensure t
   :after (company php))
+
+(use-package company-terraform
+  :after (company terraform-mode)
+  :ensure t)
 
 (provide 'init-company)
 ;;; init-company.el ends here
