@@ -16,11 +16,12 @@
   :config
   (ivy-mode 1)
   (ivy-set-occur 'ivy-switch-buffer 'ivy-switch-buffer-occur))
+
 (use-package counsel
   :after ivy
+  :demand t
   :diminish
-  :bind (
-         ("C-*" . counsel-org-agenda-headlines)
+  :bind (("C-*" . counsel-org-agenda-headlines)
          ("M-x" . counsel-M-x)
          ("C-x C-f" . counsel-find-file)
          ("C-c l" . counsel-locate))
