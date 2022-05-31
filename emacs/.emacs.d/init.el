@@ -23,6 +23,7 @@
 ;; disable annoying s-SPC undefined
 (define-key global-map (kbd "s-SPC") 'ignore)
 (require 'init-utils)
+
 (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el
 ;; Calls (package-initialize)
 (require 'init-elpa)   ;; Machinery for installing required packages
@@ -65,7 +66,12 @@
 (require 'init-php)
 (require 'init-latex)
 ;;; Devops Stuffnn
-(require 'init-ansible)
+(use-package ansible
+  :ensure t)
+
+(use-package ansible-doc
+  :ensure t)
+
 ;;; WebDev Stuff
 (require 'init-web)
 (require 'init-css)
@@ -105,8 +111,8 @@
 ;;; `server' for emacs
 (require 'server)
 (if (not (eq system-type 'windows-nt))
-           (unless (server-running-p)
-             (server-start)))
+  (unless (server-running-p)
+    (server-start)))
 ;;----------------------------------------------------------------------------
 ;; Variables configured via the interactive 'customize' interface
 ;;----------------------------------------------------------------------------
