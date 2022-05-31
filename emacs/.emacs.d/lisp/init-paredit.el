@@ -42,10 +42,10 @@
 ;; Enable some handy paredit functions in all prog modes
 ;; ----------------------------------------------------------------------------
 
-(use-package paredit-everywhere
-  :hook (prog-mode css-mode)
-  :config
-  (define-key paredit-everywhere-mode-map (kbd "M-s") nil)
-  :ensure t)
+;; (use-package paredit-everywhere
+;;   :hook (prog-mode css-mode)
+;;   :config
+;;   (define-key paredit-everywhere-mode-map (kbd "M-s") nil)
+;;   :ensure t)
 
 (provide 'init-paredit)

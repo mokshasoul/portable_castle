@@ -27,11 +27,6 @@
 ;;; Utilities taken from different repos
 ;;; Code:
 ;;
-
-(provide 'init-editing-utils)
-
-;;; init-editing-utils.el ends here
-
 (use-package unfill :ensure t)
 ;;; visual line wrap
 (visual-line-mode t)
@@ -66,7 +61,7 @@
 ;;; Autoread file changed on disk
 (add-hook 'after-init-hook 'global-auto-revert-mode)
 (setq global-auto-revert-non-file-buffers t
-      auto-revert-verbose nil)
+  auto-revert-verbose nil)
 
 (add-hook 'after-init-hook 'transient-mark-mode)
 ;;; NFO-File Fix
@@ -131,8 +126,8 @@
 (use-package symbol-overlay
   :diminish
   :hook ((prog-mode . symbol-overlay-mode)
-         (html-mode . symbol-overlay-mode)
-         (css-mode . symbol-overlay-mode))
+          (html-mode . symbol-overlay-mode)
+          (css-mode . symbol-overlay-mode))
   :config
   (define-key symbol-overlay-mode-map (kbd "M-n") 'symbol-overlay-jump-next)
   (define-key symbol-overlay-mode-map (kbd "M-p") 'symbol-overlay-jump-prev))
@@ -207,7 +202,7 @@
   (global-set-key (kbd "C-c m e") 'mc/edit-ends-of-lines)
   (global-set-key (kbd "C-c m a") 'mc/edit-beginnings-of-lines))
 
-(defun init-editing-utils/kill-back-to-indentation ()
+(defun kill-back-to-indentation ()
   "Kill from point back to the first non-whitespace character on the line."
   (interactive)
   (let ((prev-pos (point)))
@@ -219,9 +214,13 @@
 ;; Page break lines
 ;;----------------------------------------------------------------------------
 (use-package page-break-lines
+  :diminish
   :hook (after-init . global-page-break-lines-mode))
-(after-load 'page-break-lines
-  (diminish 'page-break-lines-mode))
+
+(use-package smartparens-config
+  :ensure smartparens
+  :config (progn (show-smartparens-global-mode t))
+  :hook ((prog-mode markdown-mode) . 'turn-on-smartparens-strict-mode))
 
 ;; (use-package smartparens-config
 ;;   :commands smartparens-mode)
@@ -240,4 +239,5 @@
 (global-set-key [remap list-buffers] #'buffer-menu)
 
 (provide 'init-editing-utils)
+
 ;;; init-editing-utils.el ends here

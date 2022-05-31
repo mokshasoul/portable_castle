@@ -29,8 +29,7 @@
 
 ;;; Code:
 ;;
-(use-package dired-x
-  :after dired)
+(require 'dired-x)
 
 (setq-default dired-dwim-target t)
 

@@ -52,5 +52,8 @@
   :after (company terraform-mode)
   :ensure t)
 
+(use-package company-ansible
+  :after (company ansible))
+
 (provide 'init-company)
 ;;; init-company.el ends here
