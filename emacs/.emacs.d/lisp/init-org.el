@@ -10,18 +10,18 @@
 (setq org-outline-path-complete-in-steps nil)         ; Refile in a single go
 (setq org-refile-use-outline-path t)                  ; Show full paths for refiling                           (org-agenda-files :maxlevel . 9)))
 (setq org-log-done t
-      org-edit-timestamp-down-means-later t
-      org-archive-mark-done nil
-      org-hide-emphasis-markers t
-      org-catch-invisible-edits 'show
-      org-export-coding-system 'utf-8
+  org-edit-timestamp-down-means-later t
+  org-archive-mark-done nil
+  org-hide-emphasis-markers t
+  org-catch-invisible-edits 'show
+  org-export-coding-system 'utf-8
                                         ; org-fast-tag-selection-single-key 'expert
-      org-html-validation-link nil
-      org-export-kill-product-buffer-when-displayed t
-      org-tags-column 5
-      org-directory (expand-file-name "_org" "~")
-      org-agenda-files (expand-file-name "agenda" org-directory)
-      org-default-notes-file (expand-file-name "notes.org" org-directory))
+  org-html-validation-link nil
+  org-export-kill-product-buffer-when-displayed t
+  org-tags-column 5
+  org-directory (expand-file-name "_org/" "~")
+  org-agenda-files (expand-file-name "agenda/" org-directory)
+  org-default-notes-file (expand-file-name "notes.org" org-directory))
 ;; inserts full filename at top of file to link different org files
 ;; (use-package org-fstree
 ;;   :ensure t)
@@ -44,15 +44,15 @@
 
 ;;; Set Org-Capture templates
 (setq org-capture-templates
-      '(("t" "todo" entry
-         (file+headline (expand-file-name "tasks.org" org-agenda-files) "Tasks")
-         "** TODO %^{Brief description} %^g\n%?\nAdded: %U")
-        ("n" "note" entry
-         (file+headline org-default-notes-file "Notes")
-         "** :NOTE:\n%U\n%a\n" :clock-keep t)
-        ("h" "habit" entry
-         (file+headline (expand-file-name "tasks.org" org-agenda-files) "Habits")
-         "** TODO %^{Brief description}%^t")))
+  `(("t" "todo" entry
+      (file+headline ,(expand-file-name "tasks.org" org-agenda-files) "Tasks")
+      "** TODO %^{Brief description} %^g\n%?\nAdded: %U")
+     ("n" "note" entry
+       (file+headline ,org-default-notes-file "Notes")
+       "** :NOTE:\n%U\n%a\n" :clock-keep t)
+     ("h" "habit" entry
+       (file+headline ,(expand-file-name "tasks.org" org-agenda-files) "Habits")
+       "** TODO %^{Brief description}%^t")))
 
 (global-set-key (kbd "C-c l") #'org-store-link)
 (global-set-key (kbd "C-c a") #'org-agenda)
