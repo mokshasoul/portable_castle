@@ -20,7 +20,7 @@
   org-export-kill-product-buffer-when-displayed t
   org-tags-column 5
   org-directory (expand-file-name "_org/" "~")
-  org-agenda-files (expand-file-name "agenda/" org-directory)
+  org-agenda-files  (list (expand-file-name "agenda/" org-directory))
   org-default-notes-file (expand-file-name "notes.org" org-directory))
 ;; inserts full filename at top of file to link different org files
 ;; (use-package org-fstree
