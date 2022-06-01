@@ -86,7 +86,17 @@
 (require 'init-git)
 ;; YAML, Markdown and latex support
 (require 'init-yaml)
-(require 'init-markdown)
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode))
+  :init (setq markdown-command "multimarkdown"))
+
+(after-load 'whitespace-cleanup-mode
+  (push 'markdown-mode whitespace-cleanup-mode-ignore-modes))
+
 (require 'init-lisp)
 (require 'init-slime)
 (require 'init-clojure)
