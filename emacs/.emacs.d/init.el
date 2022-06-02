@@ -61,9 +61,13 @@
 (require 'init-flyspell)
 ;;; CSV Mode settings
 (require 'init-csv)
-;;; Languages
+;; Languages
 (require 'init-python)
-(require 'init-php)
+;;; PHP
+
+(use-package php-mode)
+(use-package smarty-mode)
+
 (require 'init-latex)
 ;;; Devops Stuffnn
 (use-package ansible
