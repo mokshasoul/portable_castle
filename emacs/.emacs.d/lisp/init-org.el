@@ -5,13 +5,14 @@
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 ;; Steve purcell org settings
 ;; Various preferences
-(setq org-refile-targets '((nil :maxlevel . 9)
-                           (org-directory :maxlevel . 9)))
+(setq org-refile-targets `(
+                            (,org-directory :maxlevel . 9)
+                            (,org-agenda-files :maxlevel . 9)))
 (setq org-outline-path-complete-in-steps nil)         ; Refile in a single go
 (setq org-refile-use-outline-path t)                  ; Show full paths for refiling                           (org-agenda-files :maxlevel . 9)))
 (setq org-log-done t
   org-edit-timestamp-down-means-later t
-  org-archive-mark-done nil
+  org-archive-mark-done t
   org-hide-emphasis-markers t
   org-catch-invisible-edits 'show
   org-export-coding-system 'utf-8
