@@ -49,7 +49,16 @@
   :commands dap-debug
   :hook (
           (python-mode . dap-ui-mode)
-          (python-mode . dap-mode)))
+          (python-mode . dap-mode))
+  :init
+  (setq dap-auto-configure-features '(sessions locals controls tooltip))
+  :config
+  (require 'dap-python)
+  (setq dap-python-debugger 'debugpy)
+  (defun dap-python--pyenv-executable-find (command)
+    (with-venv (executable-find "python")))
+  (add-hook 'dap-stopped-hook
+    (lambda (arg) (call-interactively #'dap-hydra))))
 
 (use-package tree-sitter
   :ensure t
