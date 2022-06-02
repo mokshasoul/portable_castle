@@ -8,11 +8,10 @@
                          (require 'lsp-pyright)
                          (lsp)))) ; or lsp-defered for lazy
 
-
-(use-package pyvenv
-  :ensure t
-  :hook (
-          (python-mode . pyvenv-activate)))
+;; (use-package pyvenv
+;;  :ensure t
+;;  :hook (
+;;          (python-mode . pyvenv-activate)))
 
 (use-package poetry
   :ensure t
