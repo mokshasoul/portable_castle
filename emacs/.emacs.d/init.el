@@ -90,7 +90,13 @@
 (require 'init-editing-utils)
 (require 'init-flyspell)
 ;;; CSV Mode settings
-(require 'init-csv)
+(use-package csv-mode
+  :ensure t
+  :init
+  (setq csv-separators '("," ";" "|" " ")))
+(add-auto-mode 'csv-mode "\\.[Cc][Ss][Vv]\\'")
+
+
 ;; Languages
 (require 'init-python)
 
