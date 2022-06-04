@@ -98,7 +98,23 @@
 
 
 ;; Languages
-(require 'init-python)
+;;; python
+(use-package lsp-pyright
+  :ensure t
+  :hook (python-mode . (lambda ()
+                         (require 'lsp-pyright)
+                         (lsp)))) ; or lsp-defered for lazy
+(use-package poetry
+  :hook (
+         (python-mode . poetry-tracking-mode)))
+
+(use-package pipenv)
+
+(setq flycheck-flake8-maximum-line-length 120)
+
+(provide 'init-python)
+;;; init-python.el Ends here
+
 
 ;;; PHP
 (use-package php-mode)
@@ -212,7 +228,12 @@
   (after-load 'sgml-mode
     (tagedit-add-paredit-like-keybindings)
     (add-hook 'sgml-mode-hook (lambda () (tagedit-mode 1)))))
-
+;;; LISP
+(require 'init-lisp)
+(require 'init-slime)
+;;; CLOJURE
+(require 'init-clojure)
+(require 'init-clojure-cider)
 ;;; Utils
 
 ;;; Paredit
@@ -273,10 +294,7 @@
 (after-load 'whitespace-cleanup-mode
   (push 'markdown-mode whitespace-cleanup-mode-ignore-modes))
 
-(require 'init-lisp)
-(require 'init-slime)
-(require 'init-clojure)
-(require 'init-clojure-cider)
+
 ;; Misc
 (require 'init-docker)
 (require 'init-docmodes)
