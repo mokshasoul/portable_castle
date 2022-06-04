@@ -112,10 +112,6 @@
 
 (setq flycheck-flake8-maximum-line-length 120)
 
-(provide 'init-python)
-;;; init-python.el Ends here
-
-
 ;;; PHP
 (use-package php-mode)
 (use-package smarty-mode)
@@ -303,9 +299,26 @@
 
 
 ;; Misc
+;;; EPUB
+(use-package nov
+  :mode "\\.epub\\'")
+;;; System Utilities
+;; i3
+(use-package i3wm
+  :ensure t)
 
-(require 'init-docmodes)
-(require 'init-sys-utils)
+;; Systemd mode
+(use-package systemd
+  :ensure t)
+
+;; SSH-Config
+(use-package ssh-config-mode
+  :ensure t)
+
+;; fish-configs
+(use-package fish-mode
+  :ensure t)
+
 (require 'init-misc)
 ;; Extra packages which don't require any configuration purcell
 (use-package gnuplot)
