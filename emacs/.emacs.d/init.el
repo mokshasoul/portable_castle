@@ -303,7 +303,12 @@
 (use-package git-modes
   :ensure t)
 ;; YAML, Markdown and latex support
-(require 'init-yaml)
+;;; YAML
+(use-package yaml-mode
+  :ensure t
+  :mode "\\.yml\\.erb\\'"
+  :hook (yaml-mode . goto-address-prog-mode))
+;;; Markdown
 (use-package markdown-mode
   :ensure t
   :commands (markdown-mode gfm-mode)
