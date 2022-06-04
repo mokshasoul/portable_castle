@@ -205,6 +205,16 @@
 (use-package json-snatcher :ensure t)
 (use-package js-doc :ensure t)
 
+(use-package tagedit
+  :ensure t
+  :mode "\\.\\(jsp\\tmpl\\)\\'"
+  :config
+  (after-load 'sgml-mode
+    (tagedit-add-paredit-like-keybindings)
+    (add-hook 'sgml-mode-hook (lambda () (tagedit-mode 1)))))
+
+;;; Utils
+
 ;;; Paredit
 (use-package paredit
   :diminish
@@ -246,8 +256,6 @@
   (if (memq this-command paredit-minibuffer-commands)
       (enable-paredit-mode)))
 
-(require 'init-html)
-;;; Untils
 (require 'init-editing-utils)
 (require 'init-whitespace)
 (require 'init-yasnippet)
