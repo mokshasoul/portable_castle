@@ -283,7 +283,25 @@
 (require 'init-editing-utils)
 (require 'init-whitespace)
 (require 'init-yasnippet)
-(require 'init-git)
+;; GIT Setup
+;;; Magit
+(use-package magit
+  :ensure t
+  :bind (("<f8>" . magit-blame)
+         ("C-x g" . magit-status))
+  :commands (magit-status
+             magit-blame
+             magit-checkout
+             magit-og-buffer))
+;;; Timemachine
+(use-package git-timemachine :ensure t)
+;; Snippets from gist
+(use-package yagist :ensure t)
+(use-package magit-gh-pulls
+  :hook (magit-mode-hook . turn-on-magit-gh-pulls))
+
+(use-package git-modes
+  :ensure t)
 ;; YAML, Markdown and latex support
 (require 'init-yaml)
 (use-package markdown-mode
