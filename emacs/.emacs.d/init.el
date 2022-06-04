@@ -123,10 +123,8 @@
   (setq TeX-view-program-selection
         '((output-pdf "PDF Viewer"))))
 
-(provide 'init-latex)
-;;; init-latex.el Ends here
-
-;;; Devops Stuffnn
+;; Devops Stuffnn
+;;; Ansible
 (use-package ansible
   :ensure t)
 
