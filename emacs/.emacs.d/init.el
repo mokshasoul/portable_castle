@@ -146,22 +146,29 @@
 
 (use-package ansible-doc
   :ensure t)
+;;; Docker
+
+;;; TODO: jwiegly config
+(use-package docker)
+(use-package docker-compose-mode)
+(use-package dockerfile-mode
+  :mode "\Dockerfile\\'")
 
 ;;; WebDev Stuff
 (use-package web-mode
   :ensure t
   :mode (("\\.phtml\\'" . web-mode)
-          ("\\.tpl\\.php\\'" . web-mode)
-          ("\\.[agj]sp\\'" . web-mode)
-          ("\\.as[cp]x\\'" . web-mode)
-          ("\\.erb\\'" . web-mode)
-          ("\\.mustache\\'" . web-mode)
-          ("\\.html?\\'" . web-mode)
-          ("\\.djhtml?\\'" . web-mode))
+         ("\\.tpl\\.php\\'" . web-mode)
+         ("\\.[agj]sp\\'" . web-mode)
+         ("\\.as[cp]x\\'" . web-mode)
+         ("\\.erb\\'" . web-mode)
+         ("\\.mustache\\'" . web-mode)
+         ("\\.html?\\'" . web-mode)
+         ("\\.djhtml?\\'" . web-mode))
   :init
   (setq web-mode-code-indent-offset 2
-    web-mode-markupt-indent-offset 2
-    web-mode-enable-auto-pairing nil))
+        web-mode-markupt-indent-offset 2
+        web-mode-enable-auto-pairing nil))
 
 ;; make web-mode play nice with smartparens taken from
 ;; prelude
@@ -296,7 +303,7 @@
 
 
 ;; Misc
-(require 'init-docker)
+
 (require 'init-docmodes)
 (require 'init-sys-utils)
 (require 'init-misc)
