@@ -352,13 +352,18 @@
   (set-selection-coding-system (if (eq system-type 'windows-nt) 'utf-16-le 'utf-8))
   (prefer-coding-system 'utf-8))
 
-(provide 'init-locales)
-
-
 ;;----------------------------------------------------------------------------
 ;; Personal settings
 ;;----------------------------------------------------------------------------
-(require 'init-personal)
+
+(setq user-full-name "Charis-Nicolas Georgiou"
+      user-mail-address "cng_it@posteo.net")
+(save-place-mode)
+(add-hook 'before-save-hook 'save-place-kill-emacs-hook)
+(setq epa-pinentry-mode 'loopback) ; This will fail if gpg>=2.1 is not available.
+(when (require 'pinentry nil t)
+  (pinentry-start))
+
 (provide 'init)
 ;; Local Variables:
 ;; coding: utf-8
