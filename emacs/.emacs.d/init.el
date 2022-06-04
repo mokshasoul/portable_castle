@@ -48,8 +48,38 @@
 (require 'init-flycheck)
 (require 'init-ivy)
 (require 'init-hippie-expand)
-(require 'init-company)
-;;; Require projectmanagement
+
+;;; Company
+(setq tab-always-indent 'complete)
+
+(use-package company
+  :defer 5
+  :diminish
+  :config
+  (setq company-idle-delay 0
+        company-minimum-prefix-length 3)
+  (global-company-mode t))
+
+(add-to-list 'completion-styles 'initials t)
+
+
+(use-package company-auctex
+  :ensure t
+  :after (company latex))
+
+(use-package company-php
+  :ensure t
+  :after (company php))
+
+(use-package company-terraform
+  :after (company terraform-mode)
+  :ensure t)
+
+(use-package company-ansible
+  :after (company ansible))
+
+;; Projectmanagement
+;; Projectile
 (require 'init-projectile)
 (require 'init-recentf)
 
