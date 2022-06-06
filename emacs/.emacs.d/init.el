@@ -171,7 +171,21 @@ Call a second time to restore the original window configuration."
 
 ;; Better dired configuration, taken from purcell
 (require 'init-dired)
-(require 'init-grep)
+;; Grep Configuration
+(setq-default grep-highlight-matches t
+              grep-scroll-output t)
+
+;; If executable ag exists, download package
+(when (and (executable-find "ag")
+           (use-package ag :ensure t))
+  (use-package wgrep-ag
+    :ensure t
+    :init
+    (setq-default ag-highlight-search t)))
+
+(when (and (executable-find "rg")
+           (use-package rg :ensure t)))
+
 ;; Make unique buffer names
 (require 'uniquify)
 
