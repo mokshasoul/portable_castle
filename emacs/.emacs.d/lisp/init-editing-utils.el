@@ -178,18 +178,15 @@
 ;; (transient-mark-mode 1) ;; no region when it is not highlighted
 ;; (setq cua-keep-region-after-copy nil) ;; standard windows behavior
 
-;;----------------------------------------------------------------------------
-;; Handy key bindings
-;;----------------------------------------------------------------------------
-(global-set-key (kbd "C-.") 'set-mark-command)
-(global-set-key (kbd "C-x C-.") 'pop-global-mark)
+
 
 (use-package avy
-  :commands avy-goto-word-1
-  :init
-  (global-set-key (kbd "C-;") 'avy-goto-char-timer)
-  :bind  ("M-s" . avy-goto-word-1))
-
+  :bind* ("C-." . avy-goto-char-timer)
+  :config
+  (avy-setup-default))
+(use-package avy-zap
+  :bind (("M-z" . avy-zap-to-char-dwim)
+         ("M-Z" . avy-zap-up-to-char-dwim)))
 (use-package multiple-cursors
   :init
   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
