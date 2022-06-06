@@ -28,7 +28,16 @@
 (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el
 ;; Calls (package-initialize)
 (require 'init-elpa)   ;; Machinery for installing required packages
-(require 'init-exec-path) ;; Set up $PATH
+
+;;; SETUP EXEC PATH
+(use-package exec-path-from-shell)
+
+(after-load 'exec-path-from-shell
+  (dolist (var '("SSH_AUTH_SOCK" "SSH_AGENT_PID" "GPG_AGENT_INFO" "LANG" "LC_CTYPE"))
+    (add-to-list 'exec-path-from-shell-variables var)))
+
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
 
 (use-package wgrep)
 (use-package diminish)
@@ -230,7 +239,8 @@ Call a second time to restore the original window configuration."
 (after-load 'ibuffer
   (fullframe ibuffer ibuffer-quit))
 
-(use-package ibuffer-vc)
+(use-package ibuffer-vc
+  :after (ibuffer))
 
 (defun ibuffer-set-up-preferred-filters ()
   (ibuffer-vc-set-filter-groups-by-vc-root)
