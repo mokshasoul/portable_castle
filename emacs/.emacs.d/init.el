@@ -42,7 +42,13 @@
 (require 'init-dired)
 (require 'init-grep)
 ;; Make unique buffer names
-(require 'init-uniquify)
+(require 'uniquify)
+
+(setq uniquify-buffer-name-style 'reverse)
+(setq uniquify-separator " • ")
+(setq uniquify-after-kill-buffer-p t)
+(setq uniquify-ignore-buffers-re "^\\*")
+
 ;; (require 'init-ibuffer)
 ;; Autocompletion, syntax checkers and expanders
 ;;; FlyCheck
