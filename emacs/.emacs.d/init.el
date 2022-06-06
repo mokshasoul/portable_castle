@@ -498,6 +498,49 @@ Call a second time to restore the original window configuration."
 ;;; CLOJURE
 (require 'init-clojure)
 (require 'init-clojure-cider)
+;;; LSP
+(setq read-process-output-max (* 3 1024 1024))
+
+(use-package lsp-mode
+  :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+         (python-mode . lsp)
+         (clojure-mode . lsp)
+         ;; if you want which-key integration
+         (lsp-mode . lsp-enable-which-key-integration))
+  :commands lsp)
+
+(use-package lsp-ui
+  :ensure t
+  :command lsp-ui-mode)
+
+
+(use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
+
+(use-package dap-mode
+  :after lsp-mode
+  :commands dap-debug
+  :hook (
+         (python-mode . dap-ui-mode)
+         (python-mode . dap-mode))
+  :init
+  (setq dap-auto-configure-features '(sessions locals controls tooltip))
+  :config
+  (require 'dap-python)
+  (setq dap-python-debugger 'debugpy)
+  (defun dap-python--pyenv-executable-find (command)
+    (with-venv (executable-find "python")))
+  (add-hook 'dap-stopped-hook
+            (lambda (arg) (call-interactively #'dap-hydra))))
+
+(use-package tree-sitter
+  :ensure t
+  :hook
+  (python-mode . tree-sitter))
+
+(use-package tree-sitter-langs
+  :after (tree-sitter)
+  :ensure t)
+
 ;; Utils
 ;;; Paredit
 (use-package paredit
