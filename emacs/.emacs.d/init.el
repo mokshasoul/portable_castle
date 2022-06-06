@@ -55,7 +55,29 @@
 (setq uniquify-after-kill-buffer-p t)
 (setq uniquify-ignore-buffers-re "^\\*")
 
-;; (require 'init-ibuffer)
+(use-package fullframe)
+(after-load 'ibuffer
+  (fullframe ibuffer ibuffer-quit))
+(use-package ibuffer-vc)
+(defun ibuffer-set-up-preferred-filters ()
+  (ibuffer-vc-set-filter-groups-by-vc-root)
+  (unless (eq ibuffer-sorting-mode 'filename/process)
+    (ibuffer-do-sort-by-filename/process)))
+
+(add-hook 'ibuffer-hook 'ibuffer-set-up-preferred-filters)
+
+(setq-default ibuffer-show-empty-filter-groups nil)
+
+
+(after-load 'ibuffer
+  ;; Use human readable Size column instead of original one
+  (define-ibuffer-column size-h
+    (:name "Size" :inline t)
+    (cond
+     ((> (buffer-size) 1000000) (format "%7.1fM" (/ (buffer-size) 1000000.0)))
+     ((> (buffer-size) 1000) (format "%7.1fk" (/ (buffer-size) 1000.0)))
+     (t (format "%8d" (buffer-size))))))
+
 ;; Autocompletion, syntax checkers and expanders
 ;;; FlyCheck
 (use-package flycheck
@@ -212,7 +234,6 @@
 
 ;;; PHP
 (use-package php-mode)
-(use-package smarty-mode)
 
 ;;; Go
 (use-package go-mode)
@@ -237,15 +258,13 @@
 
 ;; Devops Stuffnn
 ;;; Ansible
-(use-package ansible
-  :ensure t)
+(use-package ansible)
+(use-package ansible-doc)
 
-(use-package ansible-doc
-  :ensure t)
 ;;; Terraform
 (use-package terraform-mode)
-;;; Docker
 
+;;; Docker
 ;;; TODO: jwiegly config
 (use-package docker)
 (use-package docker-compose-mode)
