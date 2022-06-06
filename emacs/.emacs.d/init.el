@@ -45,10 +45,22 @@
 (require 'init-uniquify)
 ;; (require 'init-ibuffer)
 ;; Autocompletion, syntax checkers and expanders
-(require 'init-flycheck)
-(require 'init-ivy)
-(require 'init-hippie-expand)
+;;; Hippe Expand
+(use-package hippie-exp
+  :bind (("M-/"   . hippie-expand)
+         ("C-M-/" . dabbrev-completion)))
 
+(global-set-key (kbd "M-/") 'hippie-expand)
+
+(setq hippie-expand-try-functions-list
+      '(try-complete-file-name-partially
+        try-complete-file-name
+        try-expand-dabbrev
+        try-expand-dabbrev-all-buffers
+        try-expand-dabbrev-from-kill))
+
+
+(require 'init-ivy)
 ;;; Company
 (setq tab-always-indent 'complete)
 
@@ -237,8 +249,9 @@
 ;;; CLOJURE
 (require 'init-clojure)
 (require 'init-clojure-cider)
-;;; Utils
-
+;; Utils
+;;; FlyCheck
+(require 'init-flycheck)
 ;;; Paredit
 (use-package paredit
   :diminish
