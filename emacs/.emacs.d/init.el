@@ -170,7 +170,35 @@ Call a second time to restore the original window configuration."
      ((t (:inherit ace-jump-face-foreground :height 2.0))))))
 
 ;; Better dired configuration, taken from purcell
-(require 'init-dired)
+(require 'dired-x)
+
+(setq-default dired-dwim-target t)
+
+;; Prefer g-prefixed coreutils version of standard utilities when available
+(let ((gls (executable-find "gls")))
+  (when gls (setq insert-directory-program gls)))
+
+
+;; More colors for dired
+(use-package diredfl
+  :ensure t
+  :after dired
+  :config
+  (diredfl-global-mode))
+
+(after-load 'dired
+  (setq dired-recursive-deletes 'top)
+  (define-key dired-mode-map [mouse-2] 'dired-find-file)
+  (define-key dired-mode-map (kbd "C-c C-p") 'wdired-change-to-wdired-mode))
+
+
+
+(use-package diff-hl
+  :ensure t
+  :config
+  (after-load 'dired
+    (add-hook 'dired-mode-hook 'diff-hl-dired-mode)))
+
 ;; Grep Configuration
 (setq-default grep-highlight-matches t
               grep-scroll-output t)
