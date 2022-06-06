@@ -45,6 +45,17 @@
 (require 'init-uniquify)
 ;; (require 'init-ibuffer)
 ;; Autocompletion, syntax checkers and expanders
+;;; FlyCheck
+(use-package flycheck
+  :init
+  (global-flycheck-mode)
+  :ensure t)
+
+(use-package flycheck-color-mode-line
+  :ensure t
+  :hook (flycheck-mode . flycheck-color-mode-line-mode))
+
+(setq flymake-start-on-flymake-mode nil)
 ;;; Hippe Expand
 (use-package hippie-exp
   :bind (("M-/"   . hippie-expand)
@@ -250,8 +261,6 @@
 (require 'init-clojure)
 (require 'init-clojure-cider)
 ;; Utils
-;;; FlyCheck
-(require 'init-flycheck)
 ;;; Paredit
 (use-package paredit
   :diminish
