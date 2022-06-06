@@ -590,8 +590,59 @@ Call a second time to restore the original window configuration."
     (tagedit-add-paredit-like-keybindings)
     (add-hook 'sgml-mode-hook (lambda () (tagedit-mode 1)))))
 ;;; LISP
-(require 'init-lisp)
-(require-package 'slime)
+(setq-default debugger-bury-or-kill 'kill)
+
+(use-package elisp-slime-nav)
+
+(dolist (hook '(emacs-lisp-mode-hook ielm-mode-hook))
+  (add-hook hook 'turn-on-elisp-slime-nav-mode))
+(add-hook 'emacs-lisp-mode-hook (lambda () (setq mode-name "ELisp")))
+
+(setq-default initial-scratch-message
+              (concat ";; Happy hacking, " user-login-name " - Emacs ♥ you!\n\n"))
+
+(use-package ipretty
+  :hook (after-init . ipretty-mode))
+
+
+
+;; Automatic byte compilation
+(use-package auto-compile
+  :config
+  (setq auto-compile-delete-stray-dest nil)
+  (add-hook 'after-init-hook 'auto-compile-on-save-mode)
+  (add-hook 'after-init-hook 'auto-compile-on-load-mode))
+
+
+;; Load .el if newer than corresponding .elc
+
+(setq load-prefer-newer t)
+
+
+
+(use-package immortal-scratch
+  :hook (after-init . immortal-scratch))
+
+(use-package aggressive-indent
+  :hook (lisp-mode . aggressive-indent-mode))
+
+
+(require 'derived)
+
+(use-package macrostep)
+(with-eval-after-load 'lisp-mode
+  (define-key emacs-lisp-mode-map (kbd "C-c x") 'macrostep-expand))
+
+
+;; A quick way to jump to the definition of a function given its key binding
+(global-set-key (kbd "C-h K") 'find-function-on-key)
+
+(use-package highlight-quoted
+  :hook (emacs-lisp-mode . highlight-quoted-mode))
+(use-package flycheck-relint)
+(use-package cask-mode)
+
+(use-package slime)
 (push (expand-file-name "contrib" (file-name-directory (locate-library "slime"))) load-path)
 
 (use-package slime-company
@@ -614,10 +665,6 @@ Call a second time to restore the original window configuration."
 
 
 ;;; REPL
-
-(defun sanityinc/slime-repl-setup ()
-  "Mode setup function for slime REPL."
-  (sanityinc/lisp-setup))
 
 (with-eval-after-load 'slime-repl
   ;; Stop SLIME's REPL from grabbing DEL, which is annoying when backspacing over a '('
