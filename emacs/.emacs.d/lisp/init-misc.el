@@ -46,28 +46,26 @@
 
 ;; Set URL-Handler
 (if (eq system-type 'darwin)
-  (setq browse-url-browser-function 'browse-url-default-macosx-browser)
+    (setq browse-url-browser-function 'browse-url-default-macosx-browser)
   (setq browse-url-browser-function 'browse-url-xdg-open))
 
 
 (setq auto-mode-alist
-  (append
-    (list
-      '("\\.\\(vcf\\|gpg\\)$" . sensitive-minor-mode)
-      )
-    auto-mode-alist))
+      (append
+       (list
+        '("\\.\\(vcf\\|gpg\\)$" . sensitive-minor-mode))
+       auto-mode-alist))
 (progn
   (setq auto-save-file-name-transforms
-    `((".*" ,temporary-file-directory t)))
+        `((".*" ,temporary-file-directory t)))
   (setq-default save-place-mode 1)
   (setq save-interprogram-paste-before-kill t
-    require-final-newline t
-    visible-bell t
-    load-prefer-newer t
-
-    save-place-file (concat user-emacs-directory "places")
-    backup-directory-alist `(("." . ,(concat user-emacs-directory
-						                           "backups")))))
+        require-final-newline t
+        visible-bell t
+        load-prefer-newer t
+        save-place-file (concat user-emacs-directory "places")
+        backup-directory-alist `(("." . ,(concat user-emacs-directory
+						 "backups")))))
 ;;; Faster than default
 (setq tramp-default-method "ssh")
 ;;; required for sudo piping on remote host
