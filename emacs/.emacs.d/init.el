@@ -223,10 +223,15 @@ Call a second time to restore the original window configuration."
 (setq uniquify-after-kill-buffer-p t)
 (setq uniquify-ignore-buffers-re "^\\*")
 
-(use-package fullframe)
+(use-package fullframe
+  :init
+  (fullframe list-packages quit-window))
+
 (after-load 'ibuffer
   (fullframe ibuffer ibuffer-quit))
+
 (use-package ibuffer-vc)
+
 (defun ibuffer-set-up-preferred-filters ()
   (ibuffer-vc-set-filter-groups-by-vc-root)
   (unless (eq ibuffer-sorting-mode 'filename/process)
