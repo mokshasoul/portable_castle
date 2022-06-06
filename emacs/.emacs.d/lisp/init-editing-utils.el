@@ -61,7 +61,7 @@
 ;;; Autoread file changed on disk
 (add-hook 'after-init-hook 'global-auto-revert-mode)
 (setq global-auto-revert-non-file-buffers t
-  auto-revert-verbose nil)
+      auto-revert-verbose nil)
 
 (add-hook 'after-init-hook 'transient-mark-mode)
 ;;; NFO-File Fix
@@ -118,7 +118,7 @@
   :diminish
   :config
   (setq undo-tree-history-directory-alist (list
-                                            (cons "." (expand-file-name "undo" user-emacs-directory))))
+                                           (cons "." (expand-file-name "undo" user-emacs-directory))))
   :init
   (global-undo-tree-mode))
 
@@ -126,8 +126,8 @@
 (use-package symbol-overlay
   :diminish
   :hook ((prog-mode . symbol-overlay-mode)
-          (html-mode . symbol-overlay-mode)
-          (css-mode . symbol-overlay-mode))
+         (html-mode . symbol-overlay-mode)
+         (css-mode . symbol-overlay-mode))
   :config
   (define-key symbol-overlay-mode-map (kbd "M-n") 'symbol-overlay-jump-next)
   (define-key symbol-overlay-mode-map (kbd "M-p") 'symbol-overlay-jump-prev))
