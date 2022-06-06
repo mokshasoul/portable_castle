@@ -111,7 +111,11 @@
 (require 'init-org)
 (require 'init-sessions)
 (require 'init-editing-utils)
-(require 'init-flyspell)
+
+(use-package flyspell
+  :bind (("C-c i b" . flyspell-buffer)
+         ("C-c i f" . flyspell-mode)))
+
 ;;; CSV Mode settings
 (use-package csv-mode
   :ensure t
