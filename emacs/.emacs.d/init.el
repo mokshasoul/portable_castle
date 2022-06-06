@@ -137,7 +137,22 @@
 
 ;; Projectmanagement
 ;; Projectile
-(require 'init-projectile)
+(use-package projectile
+  :ensure t
+  :bind (
+         ("C-c p" . projectile-command-map))
+  :hook
+  (after-init . projectile-mode)
+  :config (
+           setq projectile-completion-system 'ivy
+           projectile-git-submodule-command nil))
+
+;; Projectile support for counsel
+(use-package counsel-projectile
+  :after (counsel projectile)
+  :config
+  (counsel-projectile-mode 1))
+
 (use-package recentf
   :hook (after-init . recentf-mode)
   :init
