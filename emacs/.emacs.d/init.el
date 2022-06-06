@@ -20,6 +20,7 @@
 ;;----------------------------------------------------------------------------
 ;; Offload custom file which gets autowritten by package
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+
 ;; disable annoying s-SPC undefined
 (define-key global-map (kbd "s-SPC") 'ignore)
 (require 'init-utils)
@@ -592,7 +593,14 @@ Call a second time to restore the original window configuration."
 (require 'init-lisp)
 (require 'init-slime)
 ;;; CLOJURE
-(require 'init-clojure)
+(use-package clojure-mode)
+
+(use-package cljsbuild-mode
+  :after (clojure-mode))
+
+(use-package elein
+  :after (clojure-mode cljsbuld-mode))
+
 (require 'init-clojure-cider)
 ;;; LSP
 (setq read-process-output-max (* 3 1024 1024))
@@ -606,8 +614,7 @@ Call a second time to restore the original window configuration."
   :commands lsp)
 
 (use-package lsp-ui
-  :ensure t
-  :command lsp-ui-mode)
+  :commands lsp-ui-mode)
 
 
 (use-package lsp-ivy :commands lsp-ivy-workspace-symbol)
