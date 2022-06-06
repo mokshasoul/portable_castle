@@ -104,7 +104,13 @@
 ;; Projectmanagement
 ;; Projectile
 (require 'init-projectile)
-(require 'init-recentf)
+(use-package recentf
+  :hook (after-init . recentf-mode)
+  :init
+  (setq-default
+   recentf-max-saved-items 40
+   recentf-exclude '("/tmp/" "/ssh:")))
+
 
 ;; (require 'init-smex) we use swiper and ivy
 ;; Org mode
