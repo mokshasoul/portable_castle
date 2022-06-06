@@ -35,6 +35,12 @@
 (use-package command-log-mode)
 (use-package dash)
 ;; Configure interface
+;;; Themes
+(use-package intellij-theme)
+(use-package leuven-theme)
+(use-package monokai-theme)
+(add-to-list 'default-frame-alist '(font . "Hack-12"))
+(load-theme 'leuven t)
 (require 'init-theme)
 (require 'init-gui-frames)
 (require 'init-windows)
