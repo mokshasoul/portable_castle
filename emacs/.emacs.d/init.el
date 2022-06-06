@@ -193,6 +193,8 @@
 (use-package php-mode)
 (use-package smarty-mode)
 
+;;; Go
+(use-package go-mode)
 ;;; LaTeX
 (use-package auctex
   :mode ("\\.tex\\'" . TeX-latex-mode)
