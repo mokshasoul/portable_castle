@@ -193,6 +193,9 @@
 
 
 ;; Languages
+
+
+
 ;;; python
 (use-package lsp-pyright
   :ensure t
@@ -239,6 +242,8 @@
 
 (use-package ansible-doc
   :ensure t)
+;;; Terraform
+(use-package terraform-mode)
 ;;; Docker
 
 ;;; TODO: jwiegly config
