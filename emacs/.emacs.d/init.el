@@ -28,7 +28,8 @@
 (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el
 ;; Calls (package-initialize)
 (require 'init-elpa)   ;; Machinery for installing required packages
-
+(use-package paradox
+  :commands paradox-list-packages)
 ;;; SETUP EXEC PATH
 (use-package exec-path-from-shell)
 
@@ -91,22 +92,6 @@
 ;;; Code:
 (add-hook 'after-init-hook 'winner-mode)
 
-
-;;----------------------------------------------------------------------------
-;; When splitting window, show (other-buffer) in the new window
-;;----------------------------------------------------------------------------
-(defun split-window-func-with-other-buffer (split-function)
-  (lambda (&optional arg)
-    "Split this window and switch to the new window unless ARG is provided."
-    (interactive "P")
-    (funcall split-function)
-    (let ((target-window (next-window)))
-      (set-window-buffer target-window (other-buffer))
-      (unless arg
-        (select-window target-window)))))
-
-(global-set-key (kbd "C-x 2") (split-window-func-with-other-buffer 'split-window-vertically))
-(global-set-key (kbd "C-x 3") (split-window-func-with-other-buffer 'split-window-horizontally))
 
 (defun sanityinc/toggle-delete-other-windows ()
   "Delete other windows in frame if any, or restore previous window config."
@@ -401,13 +386,6 @@ Call a second time to restore the original window configuration."
 ;; (require 'init-smex) we use swiper and ivy
 ;; Org mode
 (require 'init-org)
-;; save a list of open files in ~/.emacs.d/.emacs.desktop
-(setq desktop-path (list user-emacs-directory)
-      desktop-auto-save-timeout 600)
-
-
-(desktop-save-mode t)
-
 ;;----------------------------------------------------------------------------
 ;; Restore histories and registers after saving
 ;;----------------------------------------------------------------------------
@@ -430,9 +408,9 @@ Call a second time to restore the original window configuration."
 ;;; CSV Mode settings
 (use-package csv-mode
   :ensure t
+  :mode "\\.[Cc][Ss][Vv]\\'"
   :init
   (setq csv-separators '("," ";" "|" " ")))
-(add-auto-mode 'csv-mode "\\.[Cc][Ss][Vv]\\'")
 
 
 ;; Languages
