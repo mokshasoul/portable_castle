@@ -212,7 +212,8 @@ Call a second time to restore the original window configuration."
     (setq-default ag-highlight-search t)))
 
 (when (and (executable-find "rg")
-           (use-package rg :ensure t)))
+           (use-package deadgrep
+             :bind ("M-s g" . deadgrep))))
 
 ;; Make unique buffer names
 (require 'uniquify)
@@ -825,7 +826,9 @@ Call a second time to restore the original window configuration."
 ;; Misc
 ;;; EPUB
 (use-package nov
-  :mode "\\.epub\\'")
+    :mode ("\\.epub\\'" . nov-mode)
+    :config
+    (setq nov-text-width 100))
 ;;; System Utilities
 ;; i3
 (use-package i3wm
