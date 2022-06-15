@@ -181,7 +181,7 @@
 
 
 (use-package avy
-  :bind* ("C-." . avy-goto-char-timer)
+  :bind* ("C-;" . avy-goto-char-timer)
   :config
   (avy-setup-default))
 (use-package avy-zap

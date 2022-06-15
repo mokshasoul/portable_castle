@@ -50,6 +50,11 @@
 (use-package intellij-theme)
 (use-package leuven-theme)
 (use-package monokai-theme)
+(use-package smart-mode-line
+  :init
+  (setq sml/theme 'light)
+  (setq sml/no-confirm-load-theme t)
+  (sml/setup))
 (add-to-list 'default-frame-alist '(font . "Hack-12"))
 (load-theme 'leuven t)
 
@@ -247,11 +252,11 @@ Call a second time to restore the original window configuration."
      (t (format "%8d" (buffer-size))))))
 
 ;; Autocompletion, syntax checkers and expanders
+
 ;;; FlyCheck
 (use-package flycheck
   :init
-  (global-flycheck-mode)
-  :ensure t)
+  (global-flycheck-mode))
 
 (use-package flycheck-color-mode-line
   :ensure t
@@ -261,16 +266,16 @@ Call a second time to restore the original window configuration."
 ;;; Hippe Expand
 (use-package hippie-exp
   :bind (("M-/"   . hippie-expand)
-         ("C-M-/" . dabbrev-completion)))
-
-(global-set-key (kbd "M-/") 'hippie-expand)
-
-(setq hippie-expand-try-functions-list
+         ("C-M-/" . dabbrev-completion))
+  :init
+  (setq hippie-expand-try-functions-list
       '(try-complete-file-name-partially
         try-complete-file-name
         try-expand-dabbrev
         try-expand-dabbrev-all-buffers
-        try-expand-dabbrev-from-kill))
+        try-expand-dabbrev-from-kill)))
+
+
 
 
 (use-package ivy
@@ -365,9 +370,11 @@ Call a second time to restore the original window configuration."
          ("C-c p" . projectile-command-map))
   :hook
   (after-init . projectile-mode)
-  :config (
-           setq projectile-completion-system 'ivy
-           projectile-git-submodule-command nil))
+  :config
+  (setq projectile-completion-system 'ivy
+    projectile-enable-caching t
+    projectile-git-submodule-command nil
+    projectile-project-search-path `(,(expand-file-name "~/pws"))))
 
 ;; Projectile support for counsel
 (use-package counsel-projectile
@@ -418,14 +425,13 @@ Call a second time to restore the original window configuration."
 
 
 ;;; python
+(use-package with-venv)
 (use-package lsp-pyright
   :ensure t
   :hook (python-mode . (lambda ()
                          (require 'lsp-pyright)
                          (lsp)))) ; or lsp-defered for lazy
-(use-package poetry
-  :hook (
-         (python-mode . poetry-tracking-mode)))
+(use-package poetry)
 
 (use-package pipenv)
 
@@ -580,22 +586,13 @@ Call a second time to restore the original window configuration."
 
 (setq load-prefer-newer t)
 
-
-
-(use-package immortal-scratch
-  :hook (after-init . immortal-scratch))
 
 (use-package aggressive-indent
   :hook (lisp-mode . aggressive-indent-mode))
-
-
 (require 'derived)
-
 (use-package macrostep)
 (with-eval-after-load 'lisp-mode
   (define-key emacs-lisp-mode-map (kbd "C-c x") 'macrostep-expand))
-
-
 ;; A quick way to jump to the definition of a function given its key binding
 (global-set-key (kbd "C-h K") 'find-function-on-key)
 
@@ -637,6 +634,7 @@ Call a second time to restore the original window configuration."
   (define-key slime-repl-mode-map (kbd "TAB") 'indent-for-tab-command)
 
   (add-hook 'slime-repl-mode-hook 'sanityinc/slime-repl-setup))
+
 ;;; CLOJURE
 (use-package clojure-mode)
 
@@ -661,7 +659,7 @@ Call a second time to restore the original window configuration."
   (eval-after-load 'flycheck
     '(setq flycheck-display-errors-function #'flycheck-pos-tip-error-messages))
   (add-hook 'after-init-hook #'global-flycheck-mode))
-
+
 ;;; LSP
 (setq read-process-output-max (* 3 1024 1024))
 
@@ -698,17 +696,17 @@ Call a second time to restore the original window configuration."
 (use-package tree-sitter
   :ensure t
   :hook
-  (python-mode . tree-sitter))
+  (prog-mode . global-tree-sitter-mode)
+  :config
+  (use-package tree-sitter-langs
+    :after (tree-sitter)
+    :ensure t))
 
-(use-package tree-sitter-langs
-  :after (tree-sitter)
-  :ensure t)
 
 ;; Utils
 ;;; Paredit
 (use-package paredit
   :diminish
-  :ensure t
   :init
   (autoload 'enable-paredit-mode "paredit"))
 
@@ -854,10 +852,28 @@ Call a second time to restore the original window configuration."
 (use-package try) ;; test install packages
 (use-package ggtags)
 ;;; Setup evil
-;; (use-package evil
-;;  :ensure t
-;;  :init
-;;  (evil-mode t))
+(setq evil-want-keybinding nil)
+(use-package goto-chg
+  :ensure t)
+(use-package evil
+  :init
+  (evil-mode t))
+(use-package evil-collection
+  :custom (evil-collection-setup-minibuffer t)
+  :init (evil-collection-init))
+(use-package evil-org
+  :ensure t
+  :after org
+  :hook (org-mode . evil-org-mode)
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
+
+(use-package evil-surround
+  :ensure t
+  :config
+  (global-evil-surround-mode 1))
+
 ;;; `server' for emacs
 (require 'server)
 (if (not (eq system-type 'windows-nt))
