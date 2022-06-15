@@ -694,16 +694,14 @@ Call a second time to restore the original window configuration."
   (add-hook 'dap-stopped-hook
             (lambda (arg) (call-interactively #'dap-hydra))))
 
-(use-package tree-sitter
-  :ensure t
-  :hook
-  (prog-mode . global-tree-sitter-mode)
-  :config
-  (use-package tree-sitter-langs
-    :after (tree-sitter)
-    :ensure t))
-
-
+; (use-package tree-sitter
+;   :ensure t
+;   :hook
+;   (prog-mode . global-tree-sitter-mode))
+; 
+; (use-package tree-sitter-langs
+;     :after (tree-sitter)
+;     :ensure t)
 ;; Utils
 ;;; Paredit
 (use-package paredit
@@ -862,6 +860,7 @@ Call a second time to restore the original window configuration."
   :init
   (evil-mode t))
 (use-package evil-collection
+  :after (evil company)
   :custom (evil-collection-setup-minibuffer t)
   :init (evil-collection-init))
 (use-package evil-org
