@@ -856,6 +856,7 @@ Call a second time to restore the original window configuration."
 (use-package dsvn)
 (use-package try) ;; test install packages
 (use-package ggtags)
+
 ;;; Setup evil
 (setq evil-want-keybinding nil)
 (use-package goto-chg
@@ -863,6 +864,9 @@ Call a second time to restore the original window configuration."
 (use-package evil
   :config
   (setq evil-undo-system 'undo-fu)
+  (evil-set-leader 'normal (kbd "SPC"))
+  (evil-define-key 'normal 'global
+    (kbd "<leader>w") 'save-buffer)
   :init
   (evil-mode t))
 (use-package evil-collection
@@ -876,12 +880,11 @@ Call a second time to restore the original window configuration."
   :config
   (require 'evil-org-agenda)
   (evil-org-agenda-set-keys))
-
 (use-package evil-surround
   :ensure t
   :config
   (global-evil-surround-mode 1))
-
+
 ;;; `server' for emacs
 (require 'server)
 (if (not (eq system-type 'windows-nt))
