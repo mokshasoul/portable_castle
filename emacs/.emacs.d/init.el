@@ -276,9 +276,8 @@ Call a second time to restore the original window configuration."
         try-expand-dabbrev-all-buffers
         try-expand-dabbrev-from-kill)))
 
-
-
-
+;; (require 'init-smex) we use swiper and ivy
+;; Ivy
 (use-package ivy
   :diminish
   :bind (("C-x b" . ivy-switch-buffer)
@@ -295,7 +294,6 @@ Call a second time to restore the original window configuration."
   :config
   (ivy-mode 1)
   (ivy-set-occur 'ivy-switch-buffer 'ivy-switch-buffer-occur))
-
 (use-package counsel
   :after ivy
   :demand t
@@ -389,9 +387,15 @@ Call a second time to restore the original window configuration."
   (setq-default
    recentf-max-saved-items 40
    recentf-exclude '("/tmp/" "/ssh:")))
+
+(use-package subword  :diminish)
+(use-package nlinum)
+(use-package rainbow-delimiters
+  :ensure t
+  :hook (prog-mode . rainbow-delimiters-mode))
+(use-package undo-fu)
 
-
-;; (require 'init-smex) we use swiper and ivy
+
 ;; Org mode
 (require 'init-org)
 ;;----------------------------------------------------------------------------
@@ -857,6 +861,8 @@ Call a second time to restore the original window configuration."
 (use-package goto-chg
   :ensure t)
 (use-package evil
+  :config
+  (setq evil-undo-system 'undo-fu)
   :init
   (evil-mode t))
 (use-package evil-collection

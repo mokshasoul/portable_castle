@@ -107,20 +107,6 @@
   (newline-and-indent))
 (global-set-key (kbd "S-<return>") 'sanityinc/newline-at-end-of-line)
 
-(use-package subword  :diminish)
-
-(use-package nlinum)
-(use-package rainbow-delimiters
-  :ensure t
-  :hook (prog-mode . rainbow-delimiters-mode))
-
-(use-package undo-tree
-  :diminish
-  :config
-  (setq undo-tree-history-directory-alist (list
-                                           (cons "." (expand-file-name "undo" user-emacs-directory))))
-  :init
-  (global-undo-tree-mode))
 
 ;;; todo figure out how to make it nice in use-package
 (use-package symbol-overlay
