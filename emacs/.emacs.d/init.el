@@ -300,8 +300,8 @@ Call a second time to restore the original window configuration."
   :diminish
   :bind (("C-*" . counsel-org-agenda-headlines)
          ("M-x" . counsel-M-x)
-         ("C-x C-f" . counsel-find-file)
-         ("C-c l" . counsel-locate))
+         ;; ("C-c l" . counsel-locate)
+         ("C-x C-f" . counsel-find-file))
   :commands counsel-minibuffer-history
   :custom
   (global-set-key (kbd "<f1> f") 'counsel-describe-function)
@@ -340,7 +340,9 @@ Call a second time to restore the original window configuration."
   :diminish
   :config
   (setq company-idle-delay 0
-        company-minimum-prefix-length 3)
+        company-minimum-prefix-length 3
+        company-dabbrev-other-buffers t
+        company-dabbrev-code-other-buffers t)
   (global-company-mode t))
 
 (add-to-list 'completion-styles 'initials t)
@@ -430,12 +432,16 @@ Call a second time to restore the original window configuration."
 
 
 ;;; python
+(use-package python
+  :config
+  (setq python-indent-guess-indent-offset-verbose nil))
+
 (use-package with-venv)
 (use-package lsp-pyright
   :ensure t
   :hook (python-mode . (lambda ()
                          (require 'lsp-pyright)
-                         (lsp)))) ; or lsp-defered for lazy
+                         (lsp-deferred)))) ; or lsp-defered for lazy
 (use-package poetry)
 
 (use-package pipenv)
@@ -585,12 +591,8 @@ Call a second time to restore the original window configuration."
   (setq auto-compile-delete-stray-dest nil)
   (add-hook 'after-init-hook 'auto-compile-on-save-mode)
   (add-hook 'after-init-hook 'auto-compile-on-load-mode))
-
-
 ;; Load .el if newer than corresponding .elc
-
 (setq load-prefer-newer t)
-
 
 (use-package aggressive-indent
   :hook (lisp-mode . aggressive-indent-mode))
@@ -603,7 +605,9 @@ Call a second time to restore the original window configuration."
 
 (use-package highlight-quoted
   :hook (emacs-lisp-mode . highlight-quoted-mode))
+
 (use-package flycheck-relint)
+
 (use-package cask-mode)
 
 (use-package slime)
@@ -669,13 +673,12 @@ Call a second time to restore the original window configuration."
 (setq read-process-output-max (* 3 1024 1024))
 
 (use-package lsp-mode
+  :commands (lsp lsp-deferred)
+  :init (setq lsp-keymap-prefix "C-c l")
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-         (python-mode . lsp)
-         (clojure-mode . lsp)
+         (clojure-mode . lsp-deferred)
          ;; if you want which-key integration
-         (lsp-mode . lsp-enable-which-key-integration))
-  :commands lsp)
-
+         (lsp-mode . lsp-enable-which-key-integration)))
 (use-package lsp-ui
   :commands lsp-ui-mode)
 

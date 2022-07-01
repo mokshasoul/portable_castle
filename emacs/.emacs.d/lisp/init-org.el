@@ -55,7 +55,7 @@
        (file+headline ,(expand-file-name "tasks.org" org-agenda-files) "Habits")
        "** TODO %^{Brief description}%^t")))
 
-(global-set-key (kbd "C-c l") #'org-store-link)
+;; (global-set-key (kbd "C-c l") #'org-store-link)
 (global-set-key (kbd "C-c a") #'org-agenda)
 (global-set-key (kbd "C-c c") #'org-capture)
 
@@ -125,5 +125,8 @@
          "* %?"
          :target (file+head "%<%Y-%m-%d>.org"
                             "#+title: %<%Y-%m-%d>\n"))))
+(use-package org-journal
+  :config
+  (setq journal-dir (concat "journal/" org-directory)))
 (provide 'init-org)
 ;;; init-org.el Ends here
