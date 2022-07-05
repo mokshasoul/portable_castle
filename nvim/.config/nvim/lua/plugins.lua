@@ -51,4 +51,11 @@ return require('packer').startup(function(use)
 		},
 		tag = 'nightly' -- optional, updated every week. (see issue #1193)
 	}
+
+	use {
+		"ur4ltz/surround.nvim",
+		config = function()
+			require"surround".setup {mappings_style = "surround"}
+		end
+	}
 end)
