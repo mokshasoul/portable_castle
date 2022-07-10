@@ -14,10 +14,11 @@ opt.backup = false -- don't use backup files
 opt.writebackup = false -- don't backup the file while editing
 opt.swapfile = false -- don't create swap files for new buffers
 opt.updatecount = 0 -- don't write swap files after some number of updates
-
 opt.history = 1000 -- store the last 1000 commands entered
 opt.textwidth = 120 -- after configured number of characters, wrap line
 
+
+opt.background = 'light'
 opt.inccommand = "nosplit" -- show the results of substition as they're happening
 -- but don't open a split
 
@@ -79,16 +80,20 @@ opt.tabstop = 2 -- the visible width of tabs
 opt.softtabstop = 2 -- edit as if the tabs are 4 characters wide
 opt.shiftwidth = 2 -- number of spaces to use for indent and unindent
 opt.shiftround = true -- round indent to a multiple of 'shiftwidth'
+-- HOWTO: set non native themes
+-- cmd [[colorscheme NeoSolarized]]
+-- best light theme IMO
+require('github-theme').setup({theme_style='light'})
 
+-- SET: base keymaps
+map('n','<Space>','<NOP>', { noremap = true})
 g.mapleader = ' '
 g.maplocalleader = ','
-
-cmd [[colorscheme delek]]
-
 map('n', '<Leader>w', ':write<CR>', { noremap = true })
 
 -- Plugins
 require('plugins')
+-- SETUP
 -- g.coq_settings = { 'auto_start': v:true }
 vim.cmd [[ packadd nlua.nvim ]]
 vim.cmd [[ packadd completion-nvim ]]
@@ -140,7 +145,6 @@ local runtime_path = vim.split(package.path, ";")
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-
 lsp.sumneko_lua.setup({
 	on_attach = on_attach,
 	settings = {
@@ -169,10 +173,14 @@ lsp.sumneko_lua.setup({
 
 require("nvim-tree").setup()
 
+
 if not not_vscode then
+	-- require('packer').compile()
+	-- print(vim.g.vscode)
 	map('x', 'gc', '<Plug>VSCodeCommentary')
 	map('n', 'gc', '<Plug>VSCodeCommentary')
 	map('o', 'gc', '<Plug>VSCodeCommentary')
 	map('n', 'gcc', '<Plug>VSCodeCommentaryLine')
 	map('n', '<Leader>w', '<Cmd>call VSCodeCall("workbench.action.files.save")<CR>')
 end
+

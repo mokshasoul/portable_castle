@@ -1,5 +1,5 @@
 local not_vs_code = function () return not vim.g.vscode end
-
+local vscode = function () return vim.g.vscode == 1 end
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
@@ -9,7 +9,6 @@ return require('packer').startup(function(use)
 	use {'ms-jpq/coq_nvim', branch = 'coq'}
 	-- 9000+ Snippets
 	use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
-
 	use {'ms-jpq/coq.thirdparty', branch = '3p'}
 
 	-- Collection of configurations for the built-in LSP client
@@ -27,7 +26,8 @@ return require('packer').startup(function(use)
 
 	use {
 		'asvetliakov/vim-easymotion',
-		cond = not(not_vs_code),
+		cond = {vscode},
+		-- disable = vim.g.vscode ~= nil,
 		as = 'vsc-easymotion'
 	}
 
@@ -55,7 +55,10 @@ return require('packer').startup(function(use)
 	use {
 		"ur4ltz/surround.nvim",
 		config = function()
-			require"surround".setup {mappings_style = "surround"}
+			require"surround".setup {mappings_style = "sandwhich"}
 		end
 	}
+	use { "overcache/NeoSolarized" }
+	use ({ 'projekt0n/github-nvim-theme' })
+	use { "ellisonleao/gruvbox.nvim" }
 end)
