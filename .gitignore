@@ -16,3 +16,4 @@ url/**
 ***/undo/***
 **.emacs.desktop
 **lsp-session**
+org-roam.db

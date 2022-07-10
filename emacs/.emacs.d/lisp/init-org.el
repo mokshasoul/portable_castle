@@ -5,23 +5,24 @@
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 ;; Steve purcell org settings
 ;; Various preferences
-(setq org-refile-targets '((nil :maxlevel . 9)
-                           (org-directory :maxlevel . 9)))
+(setq org-refile-targets `(
+                            (org-directory :maxlevel . 9)
+                            (org-agenda-files :maxlevel . 9)))
 (setq org-outline-path-complete-in-steps nil)         ; Refile in a single go
 (setq org-refile-use-outline-path t)                  ; Show full paths for refiling                           (org-agenda-files :maxlevel . 9)))
 (setq org-log-done t
-      org-edit-timestamp-down-means-later t
-      org-archive-mark-done nil
-      org-hide-emphasis-markers t
-      org-catch-invisible-edits 'show
-      org-export-coding-system 'utf-8
+  org-edit-timestamp-down-means-later t
+  org-archive-mark-done t
+  org-hide-emphasis-markers t
+  org-catch-invisible-edits 'show
+  org-export-coding-system 'utf-8
                                         ; org-fast-tag-selection-single-key 'expert
-      org-html-validation-link nil
-      org-export-kill-product-buffer-when-displayed t
-      org-tags-column 5
-      org-directory '("~/Nextcloud/_org/")
-      org-agenda-files '("~/Nextcloud/_org/agenda/")
-      org-default-notes-file "~/Nextcloud/_org/notes.org")
+  org-html-validation-link nil
+  org-export-kill-product-buffer-when-displayed t
+  org-tags-column 5
+  org-directory (expand-file-name "_org/" "~")
+  org-agenda-files  (list (expand-file-name "agenda/" org-directory))
+  org-default-notes-file (expand-file-name "notes.org" org-directory))
 ;; inserts full filename at top of file to link different org files
 ;; (use-package org-fstree
 ;;   :ensure t)
@@ -44,22 +45,19 @@
 
 ;;; Set Org-Capture templates
 (setq org-capture-templates
-      '(("t" "todo" entry
-         (file+headline "~/Nextcloud/_org/agenda/tasks.org" "Tasks")
-         "** TODO %^{Brief description} %^g\n%?\nAdded: %U")
-        ("n" "note" entry
-         (file+headline "~/Nextcloud/_org/notes.org" "Notes")
-         "** :NOTE:\n%U\n%a\n" :clock-keep t)
-        ("h" "habit" entry
-         (file+headline "~/Nextcloud/_org/tasks.org" "Habits")
-         "** TODO %^{Brief description}%^t")))
+  `(("t" "todo" entry
+      (file+headline ,(expand-file-name "tasks.org" org-agenda-files) "Tasks")
+      "** TODO %^{Brief description} %^g\n%?\nAdded: %U")
+     ("n" "note" entry
+       (file+headline ,org-default-notes-file "Notes")
+       "** :NOTE:\n%U\n%a\n" :clock-keep t)
+     ("h" "habit" entry
+       (file+headline ,(expand-file-name "tasks.org" org-agenda-files) "Habits")
+       "** TODO %^{Brief description}%^t")))
 
-
-(define-key global-map (kbd "C-c l") 'org-store-link)
-(define-key global-map (kbd "C-c c") 'org-capture)
-(define-key global-map (kbd "C-c a") 'org-agenda)
-
-
+;; (global-set-key (kbd "C-c l") #'org-store-link)
+(global-set-key (kbd "C-c a") #'org-agenda)
+(global-set-key (kbd "C-c c") #'org-capture)
 
 ;; Lots of stuff from http://doc.norang.ca/org-mode.html
 
@@ -102,7 +100,7 @@
   :config
   (progn
     (setq org-projectile-projects-file
-          "~/Nextcloud/_org/projects.org")
+          (expand-file-name "projects.org" org-directory))
     (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
     (push (org-projectile-project-todo-entry) org-capture-templates)))
 
@@ -111,8 +109,24 @@
 (require 'org-crypt)
 (org-crypt-use-before-save-magic)
 (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+
 (use-package calfw-org
   :after calfw)
 
+(use-package org-roam
+  :ensure t)
+;; org-roam
+(setq org-roam-directory (expand-file-name "roam" org-directory))
+(org-roam-db-autosync-mode)
+(setq org-roam-dailies-directory "daily/")
+
+(setq org-roam-dailies-capture-templates
+      '(("d" "default" entry
+         "* %?"
+         :target (file+head "%<%Y-%m-%d>.org"
+                            "#+title: %<%Y-%m-%d>\n"))))
+(use-package org-journal
+  :config
+  (setq journal-dir (concat "journal/" org-directory)))
 (provide 'init-org)
-;;; init-org Ends here
+;;; init-org.el Ends here

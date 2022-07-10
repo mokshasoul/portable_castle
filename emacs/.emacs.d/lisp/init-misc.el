@@ -24,6 +24,7 @@
 ;; Boston, MA 02111-1307, USA.
 
 ;;; Commentary:
+;;; Miscallaneous packages and functions
 
 ;;; Code:
 ;; Here are extra packages that provide QoL features
@@ -43,24 +44,25 @@
   :ensure t
   :mode "\\.env\\..*\\'")
 
-(setq browse-url-browser-function 'browse-url-xdg-open)
+;; Set URL-Handler
+(if (eq system-type 'darwin)
+    (setq browse-url-browser-function 'browse-url-default-macosx-browser)
+  (setq browse-url-browser-function 'browse-url-xdg-open))
+
 
 (setq auto-mode-alist
       (append
        (list
-        '("\\.\\(vcf\\|gpg\\)$" . sensitive-minor-mode)
-        )
+        '("\\.\\(vcf\\|gpg\\)$" . sensitive-minor-mode))
        auto-mode-alist))
 (progn
-    (setq auto-save-file-name-transforms
-          `((".*" ,temporary-file-directory t)))
+  (setq auto-save-file-name-transforms
+        `((".*" ,temporary-file-directory t)))
   (setq-default save-place-mode 1)
   (setq save-interprogram-paste-before-kill t
         require-final-newline t
-        apropos-do-all t
         visible-bell t
         load-prefer-newer t
-
         save-place-file (concat user-emacs-directory "places")
         backup-directory-alist `(("." . ,(concat user-emacs-directory
 						 "backups")))))
@@ -77,7 +79,9 @@
 (setq backup-directory-alist
       `((".*" . ,temporary-file-directory)))
 (setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
+  `((".*" ,temporary-file-directory t)))
+(setq lock-file-name-transforms
+  `((".*" ,(concat user-emacs-directory "locks/") t)))
 ;;; CruX
 (use-package crux)
 (provide 'init-misc)
